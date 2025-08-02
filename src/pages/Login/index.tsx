@@ -23,8 +23,8 @@ const Login = () => {
                             </div>
                             <div className='flex flex-col text-white font-bold px-20'>
                                 <h3 className='text-2xl mb-8'>Entrar no X</h3>
-                                <input placeholder='E-mail'  className='mb-11 border-[0.1px] border-white rounded-sm p-4 w-full focus:outline-none focus:border-primary_blue focus:border-2 focus:placeholder:text-primary_blue' type="email" name="email" />
-                                <input placeholder='Password'  className='mb-9 border-[0.1px] border-white rounded-sm p-4 w-full focus:outline-none focus:border-primary_blue focus:border-2 focus:placeholder:text-primary_blue' type="password" name="password" />
+                                <input placeholder='E-mail ou usuário'  className='mb-11 border-[0.1px] border-white rounded-sm p-4 w-full focus:outline-none focus:border-primary_blue focus:border-2 focus:placeholder:text-primary_blue' type="email" name="email" />
+                                <input placeholder='Senha'  className='mb-9 border-[0.1px] border-white rounded-sm p-4 w-full focus:outline-none focus:border-primary_blue focus:border-2 focus:placeholder:text-primary_blue' type="password" name="password" />
                                 <button className=' bg-white text-2xl text-black py-2 px-20 h-fit w-full rounded-4xl hover:bg-neutral-300 mb-16 cursor-pointer'>Avançar</button>
                                 <p className='text-base mb-12'>Não tem uma conta? <span onClick={() => (setShowModalRegister(true), setShowModalLogin(false))} className='text-primary_blue cursor-pointer'>Inscreva-se</span></p>
                             </div>
@@ -46,9 +46,11 @@ const Login = () => {
                             </div>
                             <div className='flex flex-col text-white font-bold px-20'>
                                 <h3 className='text-2xl mb-8'>Criar sua conta</h3>
-                                <input placeholder='Name'  className='mb-3.5 border-[0.1px] border-white rounded-sm p-4 w-full focus:outline-none focus:border-primary_blue focus:border-2 focus:placeholder:text-primary_blue' type="text" name="name" />
+                                <input placeholder='Nome'  className='mb-3.5 border-[0.1px] border-white rounded-sm p-4 w-full focus:outline-none focus:border-primary_blue focus:border-2 focus:placeholder:text-primary_blue' type="text" name="name" />
+                                <input placeholder='Usuário'  className='mb-3.5 border-[0.1px] border-white rounded-sm p-4 w-full focus:outline-none focus:border-primary_blue focus:border-2 focus:placeholder:text-primary_blue' type="text" name="account" />
                                 <input placeholder='E-mail'  className='mb-3.5 border-[0.1px] border-white rounded-sm p-4 w-full focus:outline-none focus:border-primary_blue focus:border-2 focus:placeholder:text-primary_blue' type="email" name="email" />
-                                <input placeholder='Password'  className='mb-9 border-[0.1px] border-white rounded-sm p-4 w-full focus:outline-none focus:border-primary_blue focus:border-2 focus:placeholder:text-primary_blue' type="password" name="password" />
+                                <input placeholder='Senha'  className='mb-3.5 border-[0.1px] border-white rounded-sm p-4 w-full focus:outline-none focus:border-primary_blue focus:border-2 focus:placeholder:text-primary_blue' type="password" name="password" />
+                                <input placeholder='Confirme a senha'  className='mb-9 border-[0.1px] border-white rounded-sm p-4 w-full focus:outline-none focus:border-primary_blue focus:border-2 focus:placeholder:text-primary_blue' type="password" name="password" />
                                 <button className=' bg-white text-2xl text-black py-2 px-20 h-fit w-full rounded-4xl hover:bg-neutral-300 mb-12 cursor-pointer'>Avançar</button>
                             </div>
                         </div>
