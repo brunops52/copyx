@@ -1,4 +1,4 @@
-import Login from "./pages/Login/login"
+import Login from "./pages/Login"
 
 
 
