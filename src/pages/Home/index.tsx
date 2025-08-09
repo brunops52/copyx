@@ -17,14 +17,14 @@ const Home = () => {
     return (
         <div className=' h-full min-h-screen flex bg-black'>
             <h1 className='w-full max-w-[353px] bg-black'>Hello World 1</h1>
-            <div className=" w-full border-x-1 border-neutral-700">
-                <div className="grid grid-cols-2 w-full max-h-16 bg-black text-neutral-500 font-bold place-items-center border-b-1 border-neutral-700">
-                    <button onClick={() => (setShowForYou(true), setShowFollowing(false))} className="cursor-pointer w-full h-full">
-                        <span className={`inline-block   ${showForYou ? 'border-b-4 border-primary_blue py-4 text-white' : ''}`}>
+            <div className=" w-full border-x-1 border-neutral-700 relative">
+                <div className="grid grid-cols-2 w-full max-h-16 bg-black/70 text-neutral-500 font-bold place-items-center border-b-1 border-neutral-700  sticky top-0 left-0">
+                    <button onClick={() => (setShowForYou(true), setShowFollowing(false))} className="cursor-pointer w-full h-full hover:bg-neutral-900 transition-colors">
+                        <span className={`inline-block  ${showForYou ? 'border-b-4 border-primary_blue py-4 text-white' : ''}`}>
                             Pare você
                         </span>
                     </button>
-                    <button onClick={() => (setShowFollowing(true), setShowForYou(false))} className="cursor-pointer w-full h-full">
+                    <button onClick={() => (setShowFollowing(true), setShowForYou(false))} className="cursor-pointer w-full h-full hover:bg-neutral-900 transition-colors">
                         <span className={`inline-block   ${showFollowing ? 'border-b-4 border-primary_blue py-4 text-white' : ''}`}>
                             Seguindo
                         </span>
@@ -56,7 +56,7 @@ const Home = () => {
                             <AiOutlineSmile className="cursor-pointer"/>
                             <AiOutlineEnvironment className="cursor-pointer"/>
                         </div>
-                        <button className="bg-neutral-600 text-black text-xl font-bold py-2 px-3.5 rounded-full hover:bg-blue-600 transition-colors">
+                        <button className={` text-black text-xl font-bold py-2 px-3.5 rounded-full cursor-pointer ${!text ? 'bg-neutral-600' : 'bg-white'} transition-colors`}>
                             Postar
                         </button>
                     </div>
@@ -64,11 +64,11 @@ const Home = () => {
                 <div className="text-white">
                     <div className="p-5 w-full border-b-1 border-neutral-700">
                         <div className="flex">
-                            <span className="w-12 h-12 bg-neutral-400 rounded-full flex items-center justify-center text-neutral-700">
+                            <span className="w-12 h-12 bg-neutral-400 rounded-full flex items-center justify-center text-neutral-700 cursor-pointer">
                                 <GoPersonFill className=" w-12 h-9"/>
                             </span>
                             <div className="ml-4">
-                                <h3 className="font-bold">
+                                <h3 className="font-bold cursor-pointer">
                                     Nome Sobrenome
                                     <span className="text-neutral-500 mx-2">@conta</span>  <span className="text-neutral-500">22h</span>
                                 </h3>
@@ -78,13 +78,13 @@ const Home = () => {
                                      por vezes levo horas e me dedico ao máximo pra isso (+)
                                 </h2>
                                 <div className="flex items-center justify-between gap-7 text-neutral-500">
-                                    <IoChatbubbleEllipsesOutline className="cursor-pointer w-6 h-6"/>
-                                    <FaRetweet className="cursor-pointer w-6 h-6"/>
-                                    <AiOutlineHeart className="cursor-pointer w-6 h-6"/>
-                                    <IoStatsChart  className="cursor-pointer w-6 h-6"/>
+                                    <span className="flex cursor-pointer hover:text-primary_blue"><IoChatbubbleEllipsesOutline className="w-6 h-6"/> 10k</span>
+                                    <span className="flex cursor-pointer hover:text-primary_blue"><FaRetweet className="w-6 h-6"/> 10k</span>
+                                    <span className="flex cursor-pointer hover:text-primary_blue"><AiOutlineHeart className="w-6 h-6"/> 10k</span>
+                                    <span className="flex cursor-pointer hover:text-primary_blue"><IoStatsChart className="w-6 h-6"/> 10k</span>
                                     <div className="flex items-center gap-2">
-                                        <IoBookmarkOutline className="cursor-pointer w-6 h-6"/>
-                                        <MdOutlineFileUpload className="cursor-pointer w-6 h-6"/>
+                                        <IoBookmarkOutline className="cursor-pointer w-6 h-6 hover:text-primary_blue"/>
+                                        <MdOutlineFileUpload className="cursor-pointer w-6 h-6 hover:text-primary_blue"/>
                                     </div>
                                 </div>
                             </div>
