@@ -4,7 +4,28 @@ import { IoChatbubbleEllipsesOutline, IoStatsChart, IoBookmarkOutline } from "re
 import { FaRetweet } from "react-icons/fa6";
 import { MdOutlineFileUpload } from "react-icons/md";
 
-const Tweet = () => {
+
+type TweetProps = {
+    user: string;
+    account: string;
+    time: string;
+    content: string;
+    comments: number;
+    retweets: number;
+    likes: number;
+    views: number;
+};
+
+const Tweet = ({ 
+    user, 
+    account, 
+    time, 
+    content, 
+    comments, 
+    retweets, 
+    likes, 
+    views 
+}: TweetProps) => {
 
     return (
         <div className="text-white">
@@ -15,19 +36,17 @@ const Tweet = () => {
                     </span>
                     <div className="ml-4">
                         <h3 className="font-bold cursor-pointer">
-                            Nome Sobrenome
-                            <span className="text-neutral-500 mx-2">@conta</span>  <span className="text-neutral-500">22h</span>
+                            {user}
+                            <span className="text-neutral-500 mx-2">@{account}</span>  <span className="text-neutral-500">{time}</span>
                         </h3>
                         <h2 className="mb-7">
-                            Pra quem não me conhece e passou a me seguir faz pouco tempo, eu me chamo Vinícius, sou designer freelance
-                                (ainda cursando, mas quase completando) e eu levo MUITO a sério meu trabalho. Tiro meu pouco sustento disso, 
-                                por vezes levo horas e me dedico ao máximo pra isso (+)
+                            {content}
                         </h2>
                         <div className="flex items-center justify-between gap-7 text-neutral-500">
-                            <span className="flex cursor-pointer hover:text-primary_blue"><IoChatbubbleEllipsesOutline className="w-6 h-6"/> 10k</span>
-                            <span className="flex cursor-pointer hover:text-primary_blue"><FaRetweet className="w-6 h-6"/> 10k</span>
-                            <span className="flex cursor-pointer hover:text-primary_blue"><AiOutlineHeart className="w-6 h-6"/> 10k</span>
-                            <span className="flex cursor-pointer hover:text-primary_blue"><IoStatsChart className="w-6 h-6"/> 10k</span>
+                            <span className="flex cursor-pointer hover:text-primary_blue"><IoChatbubbleEllipsesOutline className="w-6 h-6"/> {comments}k</span>
+                            <span className="flex cursor-pointer hover:text-primary_blue"><FaRetweet className="w-6 h-6"/> {retweets}k</span>
+                            <span className="flex cursor-pointer hover:text-primary_blue"><AiOutlineHeart className="w-6 h-6"/> {likes}k</span>
+                            <span className="flex cursor-pointer hover:text-primary_blue"><IoStatsChart className="w-6 h-6"/> {views}k</span>
                             <div className="flex items-center gap-2">
                                 <IoBookmarkOutline className="cursor-pointer w-6 h-6 hover:text-primary_blue"/>
                                 <MdOutlineFileUpload className="cursor-pointer w-6 h-6 hover:text-primary_blue"/>
