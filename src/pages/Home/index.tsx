@@ -7,12 +7,13 @@ import {
     AiOutlineCalendar, 
     AiOutlineSmile, 
     AiOutlineEnvironment, 
-    AiOutlineHeart, } from "react-icons/ai";
+    AiOutlineHeart } from "react-icons/ai";
 import { IoChatbubbleEllipsesOutline, IoStatsChart, IoBookmarkOutline, IoBookmark    } from "react-icons/io5";
 import { FaRetweet } from "react-icons/fa6";
 import { MdOutlineFileUpload } from "react-icons/md";
 
 import LeftAside from "../../components/LeftAside";
+import RightAside from "../../components/RightAside";
 
 
 
@@ -100,7 +101,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <h1 className='w-full max-w-[416px] bg-black'>Hello World 3</h1>
+            <RightAside/>
         </div>
     )
   }
