@@ -1,10 +1,18 @@
 import { useState } from "react";
 
 import { GoPersonFill } from "react-icons/go";
-import { AiOutlineFileImage, AiOutlineFileGif, AiOutlineCalendar, AiOutlineSmile, AiOutlineEnvironment, AiOutlineHeart     } from "react-icons/ai";
+import { 
+    AiOutlineFileImage, 
+    AiOutlineFileGif, 
+    AiOutlineCalendar, 
+    AiOutlineSmile, 
+    AiOutlineEnvironment, 
+    AiOutlineHeart, } from "react-icons/ai";
 import { IoChatbubbleEllipsesOutline, IoStatsChart, IoBookmarkOutline, IoBookmark    } from "react-icons/io5";
 import { FaRetweet } from "react-icons/fa6";
 import { MdOutlineFileUpload } from "react-icons/md";
+
+import LeftAside from "../../components/LeftAside";
 
 
 
@@ -16,7 +24,7 @@ const Home = () => {
 
     return (
         <div className=' h-full min-h-screen flex bg-black'>
-            <h1 className='w-full max-w-[353px] bg-black'>Hello World 1</h1>
+            <LeftAside/>
             <div className=" w-full border-x-1 border-neutral-700 relative">
                 <div className="grid grid-cols-2 w-full max-h-16 bg-black/70 text-neutral-500 font-bold place-items-center border-b-1 border-neutral-700  sticky top-0 left-0">
                     <button onClick={() => (setShowForYou(true), setShowFollowing(false))} className="cursor-pointer w-full h-full hover:bg-neutral-900 transition-colors">
