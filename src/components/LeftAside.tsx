@@ -41,7 +41,7 @@ const LeftAside = ({handleButtonMenu}: LeftAsideProps) => {
                         Página Inicial
                     </span>
                 </button>
-                <button onClick={() => {handleButtonMenu("HOME"), setSelecteButton("EXPLORE")}} className={`flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10 ${selecteButton === "EXPLORE" ? "font-bold" : ""}`}>
+                <button onClick={() => {handleButtonMenu("EXPLORE"), setSelecteButton("EXPLORE")}} className={`flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10 ${selecteButton === "EXPLORE" ? "font-bold" : ""}`}>
                     {selecteButton === "EXPLORE" ?
                         <FaSearch className="w-9 h-9"/>
                         :
