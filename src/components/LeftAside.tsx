@@ -1,51 +1,82 @@
 import { 
-    AiOutlineHome, 
+    AiOutlineHome,
+    AiFillHome, 
     AiOutlineSearch,
     AiOutlineBell,
+    AiFillBell,
     AiOutlineTag,
+    AiFillTag,
     AiOutlineUser,
     AiFillLock } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
 import { GoPersonFill } from "react-icons/go";
+import { FaSearch, FaUser } from "react-icons/fa";
+
 
 
 import logo from '../assets/LOGO_X.svg';
+import { useState } from "react";
 
-const LeftAside = () => {
+type LeftAsideProps = {
+    handleButtonMenu: (menu: string) => void;
+};
+
+const LeftAside = ({handleButtonMenu}: LeftAsideProps) => {
+        const [selecteButton, setSelecteButton] = useState("HOME");
 
     return (
-        <aside className='w-full max-w-[353px] px-12 pt-5 pb-14 text-white sticky left-0 top-0 h-screen'>
+        <aside className='w-full max-w-[353px] px-12 pt-5 pb-14 text-white sticky left-0 top-0 h-screen '>
                 <img 
                     src={logo} 
                     alt="X Logo" 
                     className="w-9"
                 />
-                <button className="flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10">
-                    <AiOutlineHome  className="w-9 h-9"/>
+                <button onClick={() => {handleButtonMenu("HOME"), setSelecteButton("HOME")}} className={`flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10 ${selecteButton === "HOME" ? "font-bold" : ""}`}>
+                    {selecteButton === "HOME" ?
+                        <AiFillHome className="w-9 h-9"/>
+                        :
+                        <AiOutlineHome   className="w-9 h-9"/>
+                    }
                     <span className="text-white text-2xl">
                         Página Inicial
                     </span>
                 </button>
-                <button className="flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10">
-                    <AiOutlineSearch   className="w-9 h-9"/>
+                <button onClick={() => {handleButtonMenu("HOME"), setSelecteButton("EXPLORE")}} className={`flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10 ${selecteButton === "EXPLORE" ? "font-bold" : ""}`}>
+                    {selecteButton === "EXPLORE" ?
+                        <FaSearch className="w-9 h-9"/>
+                        :
+                        <AiOutlineSearch   className="w-9 h-9"/>
+                    }
                     <span className="text-white text-2xl">
                         Explorar
                     </span>
                 </button>
-                <button className="flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10">
-                    <AiOutlineBell   className="w-9 h-9"/>
+                <button onClick={() => {handleButtonMenu("HOME"), setSelecteButton("NOTIFICATION")}} className={`flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10 ${selecteButton === "NOTIFICATION" ? "font-bold" : ""}`}>
+                    {selecteButton === "NOTIFICATION" ?
+                        <AiFillBell className="w-9 h-9"/>
+                        :
+                        <AiOutlineBell   className="w-9 h-9"/>
+                    }
                     <span className="text-white text-2xl">
                         Notifícações
                     </span>
                 </button>
-                <button className="flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10">
-                    <AiOutlineTag  className="w-9 h-9"/>
+                <button onClick={() => {handleButtonMenu("HOME"), setSelecteButton("TAG")}} className={`flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10 ${selecteButton === "TAG" ? "font-bold" : ""}`}>
+                    {selecteButton === "TAG" ?
+                        <AiFillTag className="w-9 h-9"/>
+                        :
+                        <AiOutlineTag  className="w-9 h-9"/>    
+                    }
                     <span className="text-white text-2xl">
                         Itens salvos
                     </span>
                 </button>
-                <button className="flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10">
-                    <AiOutlineUser  className="w-7 h-7"/>
+                <button onClick={() => {handleButtonMenu("HOME"), setSelecteButton("PROFILE")}} className={`flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10 ${selecteButton === "PROFILE" ? "font-bold" : ""}`}>
+                    {selecteButton === "PROFILE" ?
+                        <FaUser className="w-9 h-9"/>
+                        :
+                        <AiOutlineUser  className="w-7 h-7"/>
+                    }
                     <span className="text-white text-2xl">
                         Perfil
                     </span>
