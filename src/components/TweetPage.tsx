@@ -12,29 +12,23 @@ type TweetPageProps = {
     account: string;
     time: string;
     content: string;
+    comments: {
+        user: string;
+        content: string;
+        time: string;
+    }[];
     retweets: number;
     likes: number;
     views: number;
     handleButtonMenu: (menu: string) => void;
 };
 
-const comments = [
-        {
-            user: '/src/assets/LOGO_X.svg',
-            content: 'comentario teste',
-            time: '30 de jul'
-        },
-        {
-            user: 'https://media.licdn.com/dms/image/v2/D4E03AQH6CzfgKuAXXw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1699646804140?e=1757548800&v=beta&t=Vm1k6H39yAIon7sVUdBNLZ7OaXaKkTuZu08-aB7-17o',
-            content: 'comentario teste',
-            time: '30 de jul'
-        },
-    ]
 const TweetPage = ({ 
     user, 
     account, 
     time, 
-    content, 
+    content,
+    comments, 
     retweets, 
     likes, 
     views,
