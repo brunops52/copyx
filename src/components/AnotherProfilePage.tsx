@@ -80,7 +80,11 @@ const profile = {
     followers: 0,
 }
 
-const AnotherProfilePage = () => {
+type AnotherProfilePageProps = {
+    handleButtonMenu: (menu: string) => void;
+};
+
+const AnotherProfilePage = ({handleButtonMenu}:AnotherProfilePageProps) => {
         const [showlikedPosts, setShowlikedPosts] = useState(true);
         const [showPosts, setShowposts] = useState(false);
     return (
@@ -144,6 +148,7 @@ const AnotherProfilePage = () => {
                                     retweets={singleTweet.retweets}
                                     likes={singleTweet.likes}
                                     views={singleTweet.views}
+                                    handleButtonMenu={handleButtonMenu}
                                 />
                             ))}
                         </>
@@ -158,6 +163,7 @@ const AnotherProfilePage = () => {
                             retweets={tweet[0].retweets}
                             likes={tweet[0].likes}
                             views={tweet[0].views}
+                            handleButtonMenu={handleButtonMenu}
                         />
                         </>
                     )}

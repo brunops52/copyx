@@ -9,11 +9,11 @@ import {
     AiOutlineEnvironment } from "react-icons/ai";
 import Tweet from "./Tweet";
 
-type TweetPageProps = {
+type TweetsPageProps = {
     handleButtonMenu: (menu: string) => void;
 };
 
-const TweetsPage = ({handleButtonMenu}: TweetPageProps) => {
+const TweetsPage = ({handleButtonMenu}: TweetsPageProps) => {
     const [showFollowing, setShowFollowing] = useState(true);
     const [showForYou, setShowForYou] = useState(false);
     const [tweetText, setTweetText] = useState('');

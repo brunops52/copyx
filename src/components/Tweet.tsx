@@ -41,11 +41,11 @@ const Tweet = ({
                             {user}
                             <span className="text-neutral-500 mx-2">@{account}</span>  <span className="text-neutral-500">{time}</span>
                         </h3>
-                        <h2 className="mb-7">
+                        <h2 onClick={() => {if (handleButtonMenu) {handleButtonMenu("POST")} }} className="mb-7 cursor-pointer">
                             {content}
                         </h2>
                         <div className="flex items-center justify-between gap-7 text-neutral-500">
-                            <span className="flex cursor-pointer hover:text-primary_blue"><IoChatbubbleEllipsesOutline className="w-6 h-6"/> {comments}k</span>
+                            <span onClick={() => {if (handleButtonMenu) {handleButtonMenu("POST")} }} className="flex cursor-pointer hover:text-primary_blue"><IoChatbubbleEllipsesOutline className="w-6 h-6"/> {comments}k</span>
                             <span className="flex cursor-pointer hover:text-primary_blue"><FaRetweet className="w-6 h-6"/> {retweets}k</span>
                             <span className="flex cursor-pointer hover:text-primary_blue"><AiOutlineHeart className="w-6 h-6"/> {likes}k</span>
                             <span className="flex cursor-pointer hover:text-primary_blue"><IoStatsChart className="w-6 h-6"/> {views}k</span>
