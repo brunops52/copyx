@@ -1,23 +1,8 @@
-import { useState } from "react";
-
-import { GoPersonFill } from "react-icons/go";
-import { 
-    AiOutlineFileImage, 
-    AiOutlineFileGif, 
-    AiOutlineCalendar, 
-    AiOutlineSmile, 
-    AiOutlineEnvironment } from "react-icons/ai";
-import Tweet from "./Tweet";
-
-type TweetPageProps = {
-    handleButtonMenu: (menu: string) => void;
-};
-
-const TweetsPage = ({handleButtonMenu}: TweetPageProps) => {
-    const [showFollowing, setShowFollowing] = useState(true);
-    const [showForYou, setShowForYou] = useState(false);
-    const [tweetText, setTweetText] = useState('');
-
+import { useState } from "react"
+import { AiFillLock } from "react-icons/ai"
+import { FaRegCalendarAlt } from "react-icons/fa"
+import { GoPersonFill } from "react-icons/go"
+import Tweet from "./Tweet"
 
     const tweet = [
         {
@@ -82,52 +67,71 @@ const TweetsPage = ({handleButtonMenu}: TweetPageProps) => {
         }
     ];
 
+const profile = {
+    name: "Nome Sobrenome",
+    posts: 0,
+    coverProfile: "",
+    profilePicture: "",
+    profileAccount: "conta",
+    profileDescription: "Descrição da bio",
+    month: "08",
+    year: "2025",
+    following: 0,
+    followers: 0,
+}
+
+const AnotherProfilePage = () => {
+        const [showlikedPosts, setShowlikedPosts] = useState(true);
+        const [showPosts, setShowposts] = useState(false);
     return (
-                <div className=" w-full border-x-1 border-neutral-700 relative">
-                    <div className="grid grid-cols-2 w-full max-h-16 bg-black/70 text-neutral-500 font-bold place-items-center border-b-1 border-neutral-700  sticky top-0 left-0">
-                        <button onClick={() => (setShowForYou(true), setShowFollowing(false))} className="cursor-pointer w-full h-full hover:bg-neutral-900 transition-colors">
-                            <span className={`inline-block  ${showForYou ? 'border-b-4 border-primary_blue py-4 text-white' : ''}`}>
-                                Pare você
-                            </span>
-                        </button>
-                        <button onClick={() => (setShowFollowing(true), setShowForYou(false))} className="cursor-pointer w-full h-full hover:bg-neutral-900 transition-colors">
-                            <span className={`inline-block   ${showFollowing ? 'border-b-4 border-primary_blue py-4 text-white' : ''}`}>
-                                Seguindo
-                            </span>
-                        </button>
-                    </div>
-                    <div className=" text-white p-5 text-2xl border-b-1 border-neutral-700">
-                        <div className="flex gap-8 mb-5">
-                            <span className="w-12 h-12 bg-neutral-400 rounded-full flex items-center justify-center text-neutral-700">
-                                <GoPersonFill className=" w-12 h-9"/>
-                            </span>
-                            <textarea
-                                value={tweetText}
-                                onChange={(e) => setTweetText(e.target.value)}
-                                className="w-full border-none resize-none overflow-hidden focus:outline-none"
-                                style={{ height: 'auto', minHeight: '40px' }}
-                                onInput={(e) => {
-                                    const target = e.target as HTMLTextAreaElement;
-                                    target.style.height = 'auto';
-                                    target.style.height = target.scrollHeight + 'px';
-                                }}
-                                placeholder="O que está acontecendo?"
-                            />
-                        </div>
-                        <div className="flex justify-between">
-                            <div className="flex items-center justify-between gap-7 ml-24 text-primary_blue">
-                                <AiOutlineFileImage className="cursor-pointer"/>
-                                <AiOutlineFileGif className="cursor-pointer"/>
-                                <AiOutlineCalendar className="cursor-pointer"/>
-                                <AiOutlineSmile className="cursor-pointer"/>
-                                <AiOutlineEnvironment className="cursor-pointer"/>
+        <>
+            <div className="w-full h-full min-h-screen border-x-1 border-neutral-700 text-white font-bold relative">
+                <div className="w-full py-1.5 px-14 bg-black/70 border-b-1 border-neutral-700  sticky top-0 left-0">
+                    <h2 className="text-xl flex items-center">{profile.name}  <AiFillLock  className="ml-2"/></h2>
+                    <span className="text-xs text-neutral-500">{profile.posts} Posts</span>
+                </div>
+                <div className="w-full">
+                    {profile.coverProfile ? (
+                        <img 
+                            src={profile.coverProfile}
+                            alt="X Logo" 
+                            className="w-full h-48 bg-cover bg-center object-cover" />) : (
+                        <div className="w-full h-48 bg-neutral-700 flex items-center justify-center"/>
+                    )}
+                    <div className="flex items-center justify-between px-5">
+                        {profile.profilePicture ? (
+                            <img 
+                                src={profile.profilePicture}
+                                alt="X Logo" 
+                                className="w-36 h-36 bg-cover bg-center object-cover mt-[-72px] rounded-full border-4 border-black mb-1.5" />) : (
+                            <div className="w-36 h-36 rounded-full mt-[-72px] bg-neutral-600 flex items-center justify-center border-4 border-black mb-1.5">
+                                <GoPersonFill className=" w-32 h-32 mb-4"/>
                             </div>
-                            <button className={` text-black text-xl font-bold py-2 px-3.5 rounded-full cursor-pointer ${!tweetText ? 'bg-neutral-600' : 'bg-white'} transition-colors`}>
-                                Postar
-                            </button>
-                        </div>
+                            
+                        )}
+                        <button className="bg-black py-2 px-7 rounded-full border-2 border-neutral-700 cursor-pointer hover:bg-neutral-900">Seguir</button>
                     </div>
-                    {showFollowing  ? (
+                    <div className="w-full py-1.5 sticky top-0 left-0 px-5">
+                        <h2 className="text-xl flex items-center">{profile.name}  <AiFillLock  className="ml-2"/></h2>
+                        <span className="text-xs text-neutral-500 items-center">@{profile.profileAccount}</span>
+                        <p className="mt-3.5">{profile.profileDescription}</p>
+                        <p className="text-xs text-neutral-500 flex items-center mt-3"><FaRegCalendarAlt className="mr-2"/> Ingressou em {profile.month} de {profile.year} </p>
+                        <p className="text-xs text-neutral-500 flex items-center mt-3"><span className="text-white mr-1">{profile.following} </span> Seguindo <span className="text-white mr-1 ml-4">{profile.followers} </span> Seguidores </p>
+                    </div>
+                    <div className="grid grid-cols-2 w-full max-h-16 bg-black/70 text-neutral-500 font-bold place-items-center border-b-1 border-neutral-700  sticky top-0 left-0">
+                        <button onClick={() => (setShowposts(true), setShowlikedPosts(false))} className="cursor-pointer w-full h-full hover:bg-neutral-900 transition-colors">
+                            <span className={`inline-block  ${showPosts ? 'border-b-4 border-primary_blue py-4 text-white' : ''}`}>
+                                Posts
+                            </span>
+                        </button>
+                        <button onClick={() => (setShowlikedPosts(true), setShowposts(false))} className="cursor-pointer w-full h-full hover:bg-neutral-900 transition-colors">
+                            <span className={`inline-block   ${showlikedPosts ? 'border-b-4 border-primary_blue py-4 text-white' : ''}`}>
+                                Curtidas
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                {showlikedPosts  ? (
                         <>
                             {tweet.map((singleTweet, index) => (
                                 <Tweet
@@ -140,7 +144,6 @@ const TweetsPage = ({handleButtonMenu}: TweetPageProps) => {
                                     retweets={singleTweet.retweets}
                                     likes={singleTweet.likes}
                                     views={singleTweet.views}
-                                    handleButtonMenu={handleButtonMenu}
                                 />
                             ))}
                         </>
@@ -155,12 +158,11 @@ const TweetsPage = ({handleButtonMenu}: TweetPageProps) => {
                             retweets={tweet[0].retweets}
                             likes={tweet[0].likes}
                             views={tweet[0].views}
-                            handleButtonMenu={handleButtonMenu}
                         />
                         </>
                     )}
-                </div>
+            </div>
+        </>
     )
   }
-
-  export default TweetsPage
+export default AnotherProfilePage
