@@ -10,7 +10,11 @@ type TweetProps = {
     account: string;
     time: string;
     content: string;
-    comments: number;
+    comments: {
+        user: string;
+        content: string;
+        time: string;
+    }[];
     retweets: number;
     likes: number;
     views: number;
@@ -45,7 +49,7 @@ const Tweet = ({
                             {content}
                         </h2>
                         <div className="flex items-center justify-between gap-7 text-neutral-500">
-                            <span onClick={() => {if (handleButtonMenu) {handleButtonMenu("POST")} }} className="flex cursor-pointer hover:text-primary_blue"><IoChatbubbleEllipsesOutline className="w-6 h-6"/> {comments}k</span>
+                            <span onClick={() => {if (handleButtonMenu) {handleButtonMenu("POST")} }} className="flex cursor-pointer hover:text-primary_blue"><IoChatbubbleEllipsesOutline className="w-6 h-6"/> {comments.length}</span>
                             <span className="flex cursor-pointer hover:text-primary_blue"><FaRetweet className="w-6 h-6"/> {retweets}k</span>
                             <span className="flex cursor-pointer hover:text-primary_blue"><AiOutlineHeart className="w-6 h-6"/> {likes}k</span>
                             <span className="flex cursor-pointer hover:text-primary_blue"><IoStatsChart className="w-6 h-6"/> {views}k</span>

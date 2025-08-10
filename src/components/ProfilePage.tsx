@@ -12,60 +12,82 @@ import { MdEdit } from "react-icons/md"
              account: "conta", 
              time: "22", 
              content: "Pra quem não me conhece e passou a me seguir faz pouco tempo, eu me chamo Vinícius, sou designer freelance (ainda cursando, mas quase completando) e eu levo MUITO a sério meu trabalho. Tiro meu pouco sustento disso, por vezes levo horas e me dedico ao máximo pra isso (+)", 
-             comments: 10000, 
+             comments: [     
+                            {
+                                user: '/src/assets/LOGO_X.svg',
+                                content: 'comentario teste',
+                                time: '30 de jul'
+                            },
+                            {
+                                user: 'https://media.licdn.com/dms/image/v2/D4E03AQH6CzfgKuAXXw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1699646804140?e=1757548800&v=beta&t=Vm1k6H39yAIon7sVUdBNLZ7OaXaKkTuZu08-aB7-17o',
+                                content: 'comentario teste 2',
+                                time: '30 de jul'
+                            }
+                        ],
              retweets: 10000, 
              likes: 10000, 
              views: 10000 
         },
         {
-            user: "nome sobren...",
-            account: "conta",
-            time: "22m",
-            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-            comments: 124,
-            retweets: 56,
-            likes: 890,
-            views: 4500
-        },
-        {
-            user: "nome sobren...",
-            account: "conta",
-            time: "1h",
-            content: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            comments: 89,
-            retweets: 23,
-            likes: 456,
-            views: 3200
-        },
-        {
-            user: "nome sobren...",
-            account: "conta",
-            time: "3h",
-            content: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-            comments: 210,
-            retweets: 78,
-            likes: 1200,
-            views: 7800
-        },
-        {
-            user: "nome sobren...",
-            account: "conta",
-            time: "5h",
-            content: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.",
-            comments: 45,
-            retweets: 12,
-            likes: 340,
-            views: 2100
-        },
-        {
-            user: "nome sobren...",
-            account: "conta",
-            time: "1d",
-            content: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi.",
-            comments: 312,
-            retweets: 145,
-            likes: 2300,
-            views: 12500
+             user: "nome sobren...",
+             account: "conta", 
+             time: "22", 
+             content: "Pra quem não me conhece e passou a me seguir faz pouco tempo, eu me chamo Vinícius, sou designer freelance (ainda cursando, mas quase completando) e eu levo MUITO a sério meu trabalho. Tiro meu pouco sustento disso, por vezes levo horas e me dedico ao máximo pra isso (+)", 
+             comments: [     
+                            {
+                                user: '/src/assets/LOGO_X.svg',
+                                content: 'comentario teste',
+                                time: '30 de jul'
+                            },
+                            {
+                                user: 'https://media.licdn.com/dms/image/v2/D4E03AQH6CzfgKuAXXw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1699646804140?e=1757548800&v=beta&t=Vm1k6H39yAIon7sVUdBNLZ7OaXaKkTuZu08-aB7-17o',
+                                content: 'comentario teste 2',
+                                time: '30 de jul'
+                            }
+                        ],
+             retweets: 10000, 
+             likes: 10000, 
+             views: 10000 
+        },{
+             user: "nome sobren...",
+             account: "conta", 
+             time: "22", 
+             content: "Pra quem não me conhece e passou a me seguir faz pouco tempo, eu me chamo Vinícius, sou designer freelance (ainda cursando, mas quase completando) e eu levo MUITO a sério meu trabalho. Tiro meu pouco sustento disso, por vezes levo horas e me dedico ao máximo pra isso (+)", 
+             comments: [     
+                            {
+                                user: '/src/assets/LOGO_X.svg',
+                                content: 'comentario teste',
+                                time: '30 de jul'
+                            },
+                            {
+                                user: 'https://media.licdn.com/dms/image/v2/D4E03AQH6CzfgKuAXXw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1699646804140?e=1757548800&v=beta&t=Vm1k6H39yAIon7sVUdBNLZ7OaXaKkTuZu08-aB7-17o',
+                                content: 'comentario teste 2',
+                                time: '30 de jul'
+                            }
+                        ],
+             retweets: 10000, 
+             likes: 10000, 
+             views: 10000 
+        },{
+             user: "nome sobren...",
+             account: "conta", 
+             time: "22", 
+             content: "Pra quem não me conhece e passou a me seguir faz pouco tempo, eu me chamo Vinícius, sou designer freelance (ainda cursando, mas quase completando) e eu levo MUITO a sério meu trabalho. Tiro meu pouco sustento disso, por vezes levo horas e me dedico ao máximo pra isso (+)", 
+             comments: [     
+                            {
+                                user: '/src/assets/LOGO_X.svg',
+                                content: 'comentario teste',
+                                time: '30 de jul'
+                            },
+                            {
+                                user: 'https://media.licdn.com/dms/image/v2/D4E03AQH6CzfgKuAXXw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1699646804140?e=1757548800&v=beta&t=Vm1k6H39yAIon7sVUdBNLZ7OaXaKkTuZu08-aB7-17o',
+                                content: 'comentario teste 2',
+                                time: '30 de jul'
+                            }
+                        ],
+             retweets: 10000, 
+             likes: 10000, 
+             views: 10000 
         }
     ];
 
