@@ -71,7 +71,7 @@ const LeftAside = ({handleButtonMenu}: LeftAsideProps) => {
                         Itens salvos
                     </span>
                 </button>
-                <button onClick={() => {handleButtonMenu("HOME"), setSelecteButton("PROFILE")}} className={`flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10 ${selecteButton === "PROFILE" ? "font-bold" : ""}`}>
+                <button onClick={() => {handleButtonMenu("PROFILE"), setSelecteButton("PROFILE")}} className={`flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10 ${selecteButton === "PROFILE" ? "font-bold" : ""}`}>
                     {selecteButton === "PROFILE" ?
                         <FaUser className="w-9 h-9"/>
                         :
