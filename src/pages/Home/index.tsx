@@ -4,6 +4,7 @@ import RightAside from "../../components/RightAside";
 import TweetsPage from "../../components/TweetsPage";
 import ExplorePage from "../../components/ExplorePage";
 import NotificationPage from "../../components/NotificationPage";
+import TagPage from "../../components/TagPage";
 
 const Home = () => {
     const [toRender, setToRender] = useState("HOME");
@@ -25,6 +26,10 @@ const Home = () => {
                     case "NOTIFICATION":
                         return (
                             <NotificationPage/>
+                        )
+                    case "TAG":
+                        return (
+                            <TagPage/>
                         )
                     default:
                         return <TweetsPage />;

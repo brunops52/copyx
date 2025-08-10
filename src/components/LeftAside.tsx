@@ -61,7 +61,7 @@ const LeftAside = ({handleButtonMenu}: LeftAsideProps) => {
                         Notificações
                     </span>
                 </button>
-                <button onClick={() => {handleButtonMenu("HOME"), setSelecteButton("TAG")}} className={`flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10 ${selecteButton === "TAG" ? "font-bold" : ""}`}>
+                <button onClick={() => {handleButtonMenu("TAG"), setSelecteButton("TAG")}} className={`flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10 ${selecteButton === "TAG" ? "font-bold" : ""}`}>
                     {selecteButton === "TAG" ?
                         <AiFillTag className="w-9 h-9"/>
                         :
