@@ -7,13 +7,37 @@ import NotificationPage from "../../components/NotificationPage";
 import TagPage from "../../components/TagPage";
 import ProfilePage from "../../components/ProfilePage";
 import AnotherProfilePage from "../../components/AnotherProfilePage";
+import TweetPage from "../../components/TweetPage";
 
 const Home = () => {
-    const [toRender, setToRender] = useState("HOME");
+    const [toRender, setToRender] = useState("POST");
 
     const handleButtonMenu = (menuOption: string) => {
         setToRender(menuOption);
     };
+
+    const tweet = {
+             user: "nome sobren...",
+             account: "conta", 
+             time: "22", 
+             content: "Pra quem não me conhece e passou a me seguir faz pouco tempo, eu me chamo Vinícius, sou designer freelance (ainda cursando, mas quase completando) e eu levo MUITO a sério meu trabalho. Tiro meu pouco sustento disso, por vezes levo horas e me dedico ao máximo pra isso (+)", 
+             comments: [     
+                            {
+                                user: '/src/assets/LOGO_X.svg',
+                                content: 'comentario teste',
+                                time: '30 de jul'
+                            },
+                            {
+                                user: 'https://media.licdn.com/dms/image/v2/D4E03AQH6CzfgKuAXXw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1699646804140?e=1757548800&v=beta&t=Vm1k6H39yAIon7sVUdBNLZ7OaXaKkTuZu08-aB7-17o',
+                                content: 'comentario teste 2',
+                                time: '30 de jul'
+                            }
+                        ],
+             retweets: 10000, 
+             likes: 10000, 
+             views: 10000 
+        }
+
     return (
         <div className=' h-full min-h-screen flex bg-black '>
             <LeftAside handleButtonMenu={handleButtonMenu}/>
@@ -39,7 +63,20 @@ const Home = () => {
                         )
                     case "ANOTHERPROFILE":
                         return (
-                            <AnotherProfilePage/>
+                            <AnotherProfilePage handleButtonMenu={handleButtonMenu}/>
+                        )
+                    case "POST":
+                        return (
+                            <TweetPage 
+                            user={tweet.user}
+                            account={tweet.account}
+                            content={tweet.content}
+                            likes={tweet.likes}
+                            retweets={tweet.retweets}
+                            time={tweet.time}
+                            views={tweet.views}
+                            comments={tweet.comments}
+                            handleButtonMenu={handleButtonMenu}/>
                         )
                     default:
                         return <TweetsPage handleButtonMenu={handleButtonMenu} />;
