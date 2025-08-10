@@ -5,6 +5,7 @@ import TweetsPage from "../../components/TweetsPage";
 import ExplorePage from "../../components/ExplorePage";
 import NotificationPage from "../../components/NotificationPage";
 import TagPage from "../../components/TagPage";
+import ProfilePage from "../../components/ProfilePage";
 
 const Home = () => {
     const [toRender, setToRender] = useState("HOME");
@@ -30,6 +31,10 @@ const Home = () => {
                     case "TAG":
                         return (
                             <TagPage/>
+                        )
+                    case "PROFILE":
+                        return (
+                            <ProfilePage/>
                         )
                     default:
                         return <TweetsPage />;
