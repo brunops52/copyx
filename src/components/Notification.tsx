@@ -1,5 +1,3 @@
-
-
 type NotificationProps = {
 img: string;
 content: string;
