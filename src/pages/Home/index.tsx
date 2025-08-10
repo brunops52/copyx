@@ -3,6 +3,7 @@ import LeftAside from "../../components/LeftAside";
 import RightAside from "../../components/RightAside";
 import TweetsPage from "../../components/TweetsPage";
 import ExplorePage from "../../components/ExplorePage";
+import NotificationPage from "../../components/NotificationPage";
 
 const Home = () => {
     const [toRender, setToRender] = useState("HOME");
@@ -21,8 +22,10 @@ const Home = () => {
                         return (
                             <ExplorePage/>
                         )
-                    case "b":
-                        return <div className="flex-1 flex justify-center items-center text-white">Welcome to the Home Page</div>;
+                    case "NOTIFICATION":
+                        return (
+                            <NotificationPage/>
+                        )
                     default:
                         return <TweetsPage />;
                 }

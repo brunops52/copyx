@@ -51,14 +51,14 @@ const LeftAside = ({handleButtonMenu}: LeftAsideProps) => {
                         Explorar
                     </span>
                 </button>
-                <button onClick={() => {handleButtonMenu("HOME"), setSelecteButton("NOTIFICATION")}} className={`flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10 ${selecteButton === "NOTIFICATION" ? "font-bold" : ""}`}>
+                <button onClick={() => {handleButtonMenu("NOTIFICATION"), setSelecteButton("NOTIFICATION")}} className={`flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10 ${selecteButton === "NOTIFICATION" ? "font-bold" : ""}`}>
                     {selecteButton === "NOTIFICATION" ?
                         <AiFillBell className="w-9 h-9"/>
                         :
                         <AiOutlineBell   className="w-9 h-9"/>
                     }
                     <span className="text-white text-2xl">
-                        Notifícações
+                        Notificações
                     </span>
                 </button>
                 <button onClick={() => {handleButtonMenu("HOME"), setSelecteButton("TAG")}} className={`flex items-center gap-7 transition-colors cursor-pointer hover:bg-neutral-900 p-3 rounded-full mt-10 ${selecteButton === "TAG" ? "font-bold" : ""}`}>
