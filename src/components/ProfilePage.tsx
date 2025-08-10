@@ -3,6 +3,8 @@ import { AiFillLock } from "react-icons/ai"
 import { FaRegCalendarAlt } from "react-icons/fa"
 import { GoPersonFill } from "react-icons/go"
 import Tweet from "./Tweet"
+import { IoClose } from "react-icons/io5"
+import { MdEdit } from "react-icons/md"
 
     const tweet = [
         {
@@ -83,8 +85,111 @@ const profile = {
 const ProfilePage = () => {
         const [showlikedPosts, setShowlikedPosts] = useState(true);
         const [showPosts, setShowposts] = useState(false);
+        const [showModalEditProfile, setShowModalEditProfile] = useState(false);
+        const [showModalEditPass, setShowModalEditPass] = useState(false);
+        const [bioText, setBioText] = useState(profile.profileDescription);
+        const [nameText, setNameText] = useState(profile.name);
+
 
     return (
+        <>
+            {
+                showModalEditProfile && (
+                    <div className='fixed inset-0 z-50 overflow-y-auto h-screen flex items-center justify-center bg-gray-700/60 text-white font-bold'>
+                        <div className='bg-black w-full max-w-[467px] relative rounded-2xl'>
+                            <div className='flex items-center p-3.5'>
+                                <IoClose onClick={() => setShowModalEditProfile(false)} className='cursor-pointer' size={24}/>
+                                <h2 className='text-2xl ml-7'>Editar perfil</h2>
+                                <button className="py-1 px-4 text-black bg-white rounded-full ml-auto cursor-pointer">Salvar</button>
+                            </div>
+                            <div className='flex flex-col text-white font-bold'>
+                                <div className="w-full">
+                                    <div className="relative">
+                                        {profile.coverProfile ? (
+                                            <>
+                                                <img 
+                                                    src={profile.coverProfile}
+                                                    alt="X Logo" 
+                                                    className="w-full h-32 bg-cover bg-center object-cover" />
+                                            </>
+                                            ) : (
+                                            <>
+                                                <div className="w-full h-32 bg-neutral-700 flex items-center justify-center"/>
+                                            </>
+                                        )}
+                                        <button className="absolute left-[45%] top-[45%] text-black border-2 border-black p-2 bg-neutral-600/30 rounded-full cursor-pointer">
+                                            <MdEdit/> 
+                                        </button>
+                                    </div>
+                                    <div className="flex items-center justify-between px-5 ">
+                                        <div className="relative">
+                                            {profile.profilePicture ? (
+                                                <>
+                                                    <img 
+                                                        src={profile.profilePicture}
+                                                        className="w-20 h-20 bg-cover bg-center object-cover mt-[-72px] rounded-full border-4 border-black mb-1.5" /> 
+                                                        alt="X Logo" 
+                                                </>
+                                                    ) : (
+                                                <>
+                                                    <div className=" w-20 h-20 rounded-full mt-[-37px] bg-neutral-600 flex items-center justify-center border-4 border-black mb-1.5">
+                                                        <GoPersonFill className=" w-16 h-16 mb-2"/>
+                                                    </div>
+                                                </>
+                                            )}                                    
+                                            <button className="absolute top-[-12px] left-[30%] text-black border-2 border-black p-2 bg-neutral-600/30 rounded-full cursor-pointer">
+                                                <MdEdit/> 
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className="w-full py-1.5 sticky top-0 left-0 px-5">
+                                        <div className="border-2 border-neutral-700 p-2 mb-4">
+                                            <h4 className="text-xs text-neutral-500">Nome</h4>
+                                            <input value={nameText}
+                                                onChange={(e) => setNameText(e.target.value)} 
+                                            className="w-full border-white resize-none overflow-hidden focus:outline-none" type="text" />
+                                        </div>
+                                        <div className="border-2 border-neutral-700 p-2">
+                                            <h4 className="text-xs text-neutral-500">Bio</h4>
+                                            <textarea
+                                                value={bioText}
+                                                onChange={(e) => setBioText(e.target.value)}
+                                                className="w-full border-white resize-none overflow-hidden focus:outline-none max-h-12 min-h-full"
+                                                onInput={(e) => {
+                                                    const target = e.target as HTMLTextAreaElement;
+                                                    target.style.height = 'auto';
+                                                    target.style.height = target.scrollHeight + 'px';
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="flex items-center justify-center w-full my-6">
+                                            <button onClick={() => {setShowModalEditPass(true)}} className="py-1 px-6 border-2 border-neutral-700 rounded-full cursor-pointer">Alterar senha</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+            {
+                showModalEditPass && (
+                    <div className='fixed inset-0 z-50 overflow-y-auto h-screen flex items-center justify-center bg-gray-700/60 text-white'>
+                        <div className='p-4 bg-black w-full max-w-[252px] rounded-2xl'>
+                            <div className='flex flex-col text-white font-bold px-6'>
+                                <h3 className='text-2xl mb-8'>Alterar senha</h3>
+                                <input placeholder='Senha Atual'  className='mb-2.5 border-[0.1px] border-white rounded-sm p-2 w-full focus:outline-none focus:border-primary_blue focus:border-2 focus:placeholder:text-primary_blue' type="password" name="currentPassword" />
+                                <input placeholder='Senha Atual'  className='mb-2.5 border-[0.1px] border-white rounded-sm p-2 w-full focus:outline-none focus:border-primary_blue focus:border-2 focus:placeholder:text-primary_blue' type="password" name="currentPassword" />
+                                <input placeholder='Senha Atual'  className='border-[0.1px] border-white rounded-sm p-2 w-full focus:outline-none focus:border-primary_blue focus:border-2 focus:placeholder:text-primary_blue' type="password" name="currentPassword" />
+                                <div className="grid grid-cols-2 gap-4 mt-6">
+                                    <button onClick={() => {setShowModalEditPass(false)}} className=' bg-white text-black py-1 w-full rounded-4xl hover:bg-neutral-300 cursor-pointer'>Salvar</button>
+                                    <button onClick={() => {setShowModalEditPass(false)}} className=' text-white bg-black py-1 w-full border-2 rounded-4xl hover:bg-neutral-800 cursor-pointer'>Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
             <div className="w-full h-full min-h-screen border-x-1 border-neutral-700 text-white font-bold relative">
                 <div className="w-full py-1.5 px-14 bg-black/70 border-b-1 border-neutral-700  sticky top-0 left-0">
                     <h2 className="text-xl flex items-center">{profile.name}  <AiFillLock  className="ml-2"/></h2>
@@ -105,11 +210,11 @@ const ProfilePage = () => {
                                 alt="X Logo" 
                                 className="w-36 h-36 bg-cover bg-center object-cover mt-[-72px] rounded-full border-4 border-black mb-1.5" />) : (
                             <div className="w-36 h-36 rounded-full mt-[-72px] bg-neutral-600 flex items-center justify-center border-4 border-black mb-1.5">
-                                <GoPersonFill className=" w-32 h-32"/>
+                                <GoPersonFill className=" w-32 h-32 mb-4"/>
                             </div>
                             
                         )}
-                        <button className="bg-black py-2 px-7 rounded-full border-2 border-neutral-700 cursor-pointer hover:bg-neutral-900">Editar perfil</button>
+                        <button onClick={() => {setShowModalEditProfile(true)}} className="bg-black py-2 px-7 rounded-full border-2 border-neutral-700 cursor-pointer hover:bg-neutral-900">Editar perfil</button>
                     </div>
                     <div className="w-full py-1.5 sticky top-0 left-0 px-5">
                         <h2 className="text-xl flex items-center">{profile.name}  <AiFillLock  className="ml-2"/></h2>
@@ -162,6 +267,7 @@ const ProfilePage = () => {
                         </>
                     )}
             </div>
+        </>
     )
   }
 
