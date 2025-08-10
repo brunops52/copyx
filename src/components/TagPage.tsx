@@ -1,6 +1,10 @@
 import Tweet from './Tweet';
 
-const TagPage = () => {
+type TagPageProps = {
+    handleButtonMenu: (menu: string) => void;
+};
+
+const TagPage = ({handleButtonMenu}:TagPageProps) => {
     const tweet = [
         {
              user: "nome sobren...",
@@ -52,6 +56,7 @@ const TagPage = () => {
                         retweets={singleTweet.retweets}
                         likes={singleTweet.likes}
                         views={singleTweet.views}
+                        handleButtonMenu={handleButtonMenu}
                     />
                 ))}
             </div>

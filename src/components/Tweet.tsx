@@ -14,6 +14,7 @@ type TweetProps = {
     retweets: number;
     likes: number;
     views: number;
+    handleButtonMenu: (menu: string) => void;
 };
 
 const Tweet = ({ 
@@ -24,7 +25,8 @@ const Tweet = ({
     comments, 
     retweets, 
     likes, 
-    views 
+    views,
+    handleButtonMenu 
 }: TweetProps) => {
 
     return (
@@ -35,7 +37,7 @@ const Tweet = ({
                         <GoPersonFill className=" w-12 h-9"/>
                     </span>
                     <div className="ml-4">
-                        <h3 className="font-bold cursor-pointer">
+                        <h3  onClick={() => {if (handleButtonMenu) {handleButtonMenu("ANOTHERPROFILE")} }} className="font-bold cursor-pointer">
                             {user}
                             <span className="text-neutral-500 mx-2">@{account}</span>  <span className="text-neutral-500">{time}</span>
                         </h3>

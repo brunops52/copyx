@@ -82,7 +82,11 @@ const profile = {
     followers: 0,
 }
 
-const ProfilePage = () => {
+type ProfilePageProps = {
+    handleButtonMenu: (menu: string) => void;
+};
+
+const ProfilePage = ({handleButtonMenu}:ProfilePageProps) => {
         const [showlikedPosts, setShowlikedPosts] = useState(true);
         const [showPosts, setShowposts] = useState(false);
         const [showModalEditProfile, setShowModalEditProfile] = useState(false);
@@ -249,6 +253,7 @@ const ProfilePage = () => {
                                     retweets={singleTweet.retweets}
                                     likes={singleTweet.likes}
                                     views={singleTweet.views}
+                                    handleButtonMenu={handleButtonMenu}
                                 />
                             ))}
                         </>
@@ -263,6 +268,7 @@ const ProfilePage = () => {
                             retweets={tweet[0].retweets}
                             likes={tweet[0].likes}
                             views={tweet[0].views}
+                            handleButtonMenu={handleButtonMenu}
                         />
                         </>
                     )}
