@@ -17,6 +17,11 @@ export interface User {
   email: string;
   first_name: string;
   last_name: string;
+  bio: string | null;
+  profile_picture: string | null;
+  cover_photo: string | null;
+  followers_count: number;
+  following_count: number;
 }
 
 export interface AuthResponse {
@@ -40,7 +45,7 @@ export interface Tweet {
       following_count: number;
     };
     is_liked: boolean;
-    mentioned_users: any[]; // ou tipa se souber a estrutura
+    mentioned_users: User[]; // ou tipa se souber a estrutura
     content: string;
     image: string | null;
     created_at: string;
@@ -66,7 +71,7 @@ export interface TweetsResponse {
       following_count: number;
     };
     is_liked: boolean;
-    mentioned_users: any[]; // ou tipa se souber a estrutura
+    mentioned_users: User[]; // ou tipa se souber a estrutura
     content: string;
     image: string | null;
     created_at: string;

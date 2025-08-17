@@ -1,35 +1,20 @@
 import { GoPersonFill } from "react-icons/go";
-import { AiOutlineHeart } from "react-icons/ai";
-import { IoChatbubbleEllipsesOutline, IoStatsChart, IoBookmarkOutline } from "react-icons/io5";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { IoChatbubbleEllipsesOutline, IoStatsChart, IoBookmarkOutline, IoBookmark  } from "react-icons/io5";
 import { FaRetweet } from "react-icons/fa6";
 import { MdOutlineFileUpload } from "react-icons/md";
+import type { Tweet as TweetType } from '../types/auth';
+import { timeAgo } from "../utils/timeAgo";
 
 
 type TweetProps = {
-    user: string;
-    account: string;
-    time: string;
-    content: string;
-    comments: {
-        user: string;
-        content: string;
-        time: string;
-    }[];
-    retweets: number;
-    likes: number;
-    views: number;
+    tweet: TweetType
     handleButtonMenu: (menu: string) => void;
 };
 
+
 const Tweet = ({ 
-    user, 
-    account, 
-    time, 
-    content, 
-    comments, 
-    retweets, 
-    likes, 
-    views,
+    tweet,
     handleButtonMenu 
 }: TweetProps) => {
 
@@ -42,17 +27,17 @@ const Tweet = ({
                     </span>
                     <div className="ml-4">
                         <h3  onClick={() => {if (handleButtonMenu) {handleButtonMenu("ANOTHERPROFILE")} }} className="font-bold cursor-pointer">
-                            {user}
-                            <span className="text-neutral-500 mx-2">@{account}</span>  <span className="text-neutral-500">{time}</span>
+                            {tweet.user.first_name}
+                            <span className="text-neutral-500 mx-2">@{tweet.user.username}</span>  <span className="text-neutral-500">{timeAgo(tweet.created_at)}</span>
                         </h3>
                         <h2 onClick={() => {if (handleButtonMenu) {handleButtonMenu("POST")} }} className="mb-7 cursor-pointer">
-                            {content}
+                            {tweet.content}
                         </h2>
                         <div className="flex items-center justify-between gap-7 text-neutral-500">
-                            <span onClick={() => {if (handleButtonMenu) {handleButtonMenu("POST")} }} className="flex cursor-pointer hover:text-primary_blue"><IoChatbubbleEllipsesOutline className="w-6 h-6"/> {comments.length}</span>
-                            <span className="flex cursor-pointer hover:text-primary_blue"><FaRetweet className="w-6 h-6"/> {retweets}k</span>
-                            <span className="flex cursor-pointer hover:text-primary_blue"><AiOutlineHeart className="w-6 h-6"/> {likes}k</span>
-                            <span className="flex cursor-pointer hover:text-primary_blue"><IoStatsChart className="w-6 h-6"/> {views}k</span>
+                            <span onClick={() => {if (handleButtonMenu) {handleButtonMenu("POST")} }} className="flex cursor-pointer hover:text-primary_blue"><IoChatbubbleEllipsesOutline className="w-6 h-6 mr-1"/> {tweet.mentions.length}</span>
+                            <span className="flex cursor-pointer hover:text-primary_blue"><FaRetweet className="w-6 h-6 mr-1"/> 0</span>
+                            <span className="flex cursor-pointer hover:text-primary_blue">{tweet.is_liked ? (<AiFillHeart className="w-6 h-6 mr-1"/>) : (<AiOutlineHeart className="w-6 h-6 mr-1"/>)} {tweet.likes.length}</span>
+                            <span className="flex cursor-pointer hover:text-primary_blue"><IoStatsChart className="w-6 h-6 mr-1"/> 0</span>
                             <div className="flex items-center gap-2">
                                 <IoBookmarkOutline className="cursor-pointer w-6 h-6 hover:text-primary_blue"/>
                                 <MdOutlineFileUpload className="cursor-pointer w-6 h-6 hover:text-primary_blue"/>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { GoPersonFill } from "react-icons/go";
 import { 
@@ -8,6 +8,8 @@ import {
     AiOutlineSmile, 
     AiOutlineEnvironment } from "react-icons/ai";
 import Tweet from "./Tweet";
+import api from '../services/api';
+import type { Tweet as TweetType, TweetsResponse } from '../types/auth';
 
 type TweetsPageProps = {
     handleButtonMenu: (menu: string) => void;
@@ -17,8 +19,23 @@ const TweetsPage = ({handleButtonMenu}: TweetsPageProps) => {
     const [showFollowing, setShowFollowing] = useState(true);
     const [showForYou, setShowForYou] = useState(false);
     const [tweetText, setTweetText] = useState('');
+    const [tweets, setTweets] = useState<TweetType[]>();
 
 
+    useEffect(() => {
+        const fetchTweets = async () => {
+          try {
+            const response = await api.get<TweetsResponse>('tweets/');
+            console.log('response.data:', response.data);
+            setTweets(response.data.results);
+          } catch (err) {
+            console.error(err);
+          }
+        };
+    
+        fetchTweets();
+      }, []);
+/*
     const tweet = [
         {
              user: "nome sobren...",
@@ -84,7 +101,7 @@ const TweetsPage = ({handleButtonMenu}: TweetsPageProps) => {
              views: 10000 
         }
     ];
-
+*/
     return (
                 <div className=" w-full border-x-1 border-neutral-700 relative">
                     <div className="grid grid-cols-2 w-full max-h-16 bg-black/70 text-neutral-500 font-bold place-items-center border-b-1 border-neutral-700  sticky top-0 left-0">
@@ -132,34 +149,17 @@ const TweetsPage = ({handleButtonMenu}: TweetsPageProps) => {
                     </div>
                     {showFollowing  ? (
                         <>
-                            {tweet.map((singleTweet, index) => (
+                            {tweets && tweets.map((singleTweet, index) => (
                                 <Tweet
                                     key={index}
-                                    user={singleTweet.user}
-                                    account={singleTweet.account}
-                                    time={singleTweet.time}
-                                    content={singleTweet.content}
-                                    comments={singleTweet.comments}
-                                    retweets={singleTweet.retweets}
-                                    likes={singleTweet.likes}
-                                    views={singleTweet.views}
+                                    tweet={singleTweet}
                                     handleButtonMenu={handleButtonMenu}
                                 />
                             ))}
                         </>
                     ): (
                         <>
-                        <Tweet
-                            user={tweet[0].user}
-                            account={tweet[0].account}
-                            time={tweet[0].time}
-                            content={tweet[0].content}
-                            comments={tweet[0].comments}
-                            retweets={tweet[0].retweets}
-                            likes={tweet[0].likes}
-                            views={tweet[0].views}
-                            handleButtonMenu={handleButtonMenu}
-                        />
+                        
                         </>
                     )}
                 </div>

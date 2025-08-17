@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import LeftAside from "../../components/LeftAside";
 import RightAside from "../../components/RightAside";
 import TweetsPage from "../../components/TweetsPage";
@@ -9,12 +10,17 @@ import ProfilePage from "../../components/ProfilePage";
 import AnotherProfilePage from "../../components/AnotherProfilePage";
 import TweetPage from "../../components/TweetPage";
 
-const Home = () => {
-    const [toRender, setToRender] = useState("POST");
 
+
+const Home = () => {
+    const [toRender, setToRender] = useState("HOME");
+    
+
+    
     const handleButtonMenu = (menuOption: string) => {
         setToRender(menuOption);
     };
+    
 
     const tweet = {
              user: "nome sobren...",
