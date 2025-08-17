@@ -1,15 +1,21 @@
-// import Login from "./pages/Login"
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
+import Login from "./pages/Login"
 import Home from "./pages/Home"
+import TweetList from './components/TweetList';
 
 
 
-function App() {
+const App: React.FC = () => {
 
   return (
-    <>
-      <Home />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/tweets" element={<TweetList />} />
+      </Routes>
+    </Router>
   )
 }
 
