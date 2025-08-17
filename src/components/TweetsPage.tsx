@@ -9,13 +9,14 @@ import {
     AiOutlineEnvironment } from "react-icons/ai";
 import Tweet from "./Tweet";
 import api from '../services/api';
-import type { TweetFormData, Tweet as TweetType, TweetsResponse, AuthResponse } from '../types/auth';
+import type { TweetFormData, Tweet as TweetType, TweetsResponse, AuthResponse, User } from '../types/auth';
 
 type TweetsPageProps = {
     handleButtonMenu: (menu: string) => void;
+    handleUser: (user: User) => void;
 };
 
-const TweetsPage = ({handleButtonMenu}: TweetsPageProps) => {
+const TweetsPage = ({handleButtonMenu, handleUser}: TweetsPageProps) => {
     const [showFollowing, setShowFollowing] = useState(true);
     const [showForYou, setShowForYou] = useState(false);
     const [tweets, setTweets] = useState<TweetType[]>();
@@ -120,6 +121,7 @@ const TweetsPage = ({handleButtonMenu}: TweetsPageProps) => {
                                     key={index}
                                     tweet={singleTweet}
                                     handleButtonMenu={handleButtonMenu}
+                                    handleUser={handleUser}
                                 />
                             ))}
                         </>
@@ -130,6 +132,7 @@ const TweetsPage = ({handleButtonMenu}: TweetsPageProps) => {
                                     key={index}
                                     tweet={singleTweet}
                                     handleButtonMenu={handleButtonMenu}
+                                    handleUser={handleUser}
                                 />
                             ))}
                         </>

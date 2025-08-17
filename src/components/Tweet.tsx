@@ -3,7 +3,7 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { IoChatbubbleEllipsesOutline, IoStatsChart, IoBookmarkOutline, IoBookmark  } from "react-icons/io5";
 import { FaRetweet } from "react-icons/fa6";
 import { MdOutlineFileUpload } from "react-icons/md";
-import type { Tweet as TweetType, AuthResponse } from '../types/auth';
+import type { Tweet as TweetType, AuthResponse, User } from '../types/auth';
 import api from '../services/api';
 import { timeAgo } from "../utils/timeAgo";
 
@@ -13,12 +13,14 @@ import { timeAgo } from "../utils/timeAgo";
 type TweetProps = {
     tweet: TweetType
     handleButtonMenu: (menu: string) => void;
+    handleUser: (user: User) => void;
 };
 
 
 const Tweet = ({ 
     tweet,
-    handleButtonMenu 
+    handleButtonMenu,
+    handleUser 
 }: TweetProps) => {
 
     const handleTweetLikeSubmit = async () => {
@@ -51,7 +53,7 @@ const Tweet = ({
                         <GoPersonFill className=" w-12 h-9"/>
                     </span>
                     <div className="ml-4 w-full">
-                        <h3  onClick={() => {if (handleButtonMenu) {handleButtonMenu("ANOTHERPROFILE")} }} className="font-bold cursor-pointer">
+                        <h3  onClick={() => {if (handleButtonMenu) {handleButtonMenu("ANOTHERPROFILE")}handleUser && handleUser(tweet.user) }} className="font-bold cursor-pointer">
                             {tweet.user.first_name}
                             <span className="text-neutral-500 mx-2">@{tweet.user.username}</span>  <span className="text-neutral-500">{timeAgo(tweet.created_at)}</span>
                         </h3>

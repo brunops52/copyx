@@ -86,3 +86,29 @@ export interface TweetsResponse {
     mentions: any[];
   }[];
 }
+
+export interface UserDetailResponse {
+      id: number;
+      username: string;
+      email: string;
+      first_name: string;
+      last_name: string;
+      bio: string | null;
+      profile_picture: string;
+      cover_photo: string | null;
+      followers_count: number;
+      following_count: number;
+    tweets: Tweet[],
+    liked_tweets: Tweet[]
+}
+
+export interface UserResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: User[]
+}
+
+export interface IsFollowingResponse {
+    is_following: boolean;
+}

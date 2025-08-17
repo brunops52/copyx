@@ -9,13 +9,28 @@ import TagPage from "../../components/TagPage";
 import ProfilePage from "../../components/ProfilePage";
 import AnotherProfilePage from "../../components/AnotherProfilePage";
 import TweetPage from "../../components/TweetPage";
+import type { User } from "../../types/auth";
 
 
 
 const Home = () => {
     const [toRender, setToRender] = useState("HOME");
+    const [user, setUser] = useState<User>({
+        id:0,
+        username:"",
+        email:"",
+        first_name:"",
+        last_name:"",
+        bio:"" ,
+        profile_picture:"",
+        cover_photo:"",
+        followers_count:0,
+        following_count:0
+    });
     
-
+    const handleUser = (user: User) => {
+        setUser(user);
+    };
     
     const handleButtonMenu = (menuOption: string) => {
         setToRender(menuOption);
@@ -50,7 +65,7 @@ const Home = () => {
             {(() => {
                 switch (toRender) {
                     case "HOME":
-                        return <TweetsPage handleButtonMenu={handleButtonMenu} />;
+                        return <TweetsPage handleUser={handleUser} handleButtonMenu={handleButtonMenu} />;
                     case "EXPLORE":
                         return (
                             <ExplorePage/>
@@ -69,7 +84,7 @@ const Home = () => {
                         )
                     case "ANOTHERPROFILE":
                         return (
-                            <AnotherProfilePage handleButtonMenu={handleButtonMenu}/>
+                             <AnotherProfilePage user={user}  handleUser={handleUser} handleButtonMenu={handleButtonMenu}/>
                         )
                     case "POST":
                         return (
@@ -85,7 +100,7 @@ const Home = () => {
                             handleButtonMenu={handleButtonMenu}/>
                         )
                     default:
-                        return <TweetsPage handleButtonMenu={handleButtonMenu} />;
+                        return <TweetsPage handleUser={handleUser} handleButtonMenu={handleButtonMenu} />;
                 }
             })()}
             <RightAside/>
