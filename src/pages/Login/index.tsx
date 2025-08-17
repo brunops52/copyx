@@ -4,8 +4,10 @@ import { IoClose } from "react-icons/io5";
 
 import type { LoginFormData, AuthResponse, registerFormData } from '../../types/auth'
 import api from '../../services/api';
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState<LoginFormData>({
         username_or_email: '',
         password: ''
@@ -26,7 +28,7 @@ const Login: React.FC = () => {
             localStorage.setItem('accessToken', response.data.access);
             localStorage.setItem('refreshToken', response.data.refresh);
             localStorage.setItem('user', JSON.stringify(response.data.user));
-            alert(JSON.stringify(response.data));
+            navigate("/")
         } 
         catch (error) {
             alert('Credenciais inválidas');
@@ -46,7 +48,7 @@ const Login: React.FC = () => {
             localStorage.setItem('accessToken', response.data.access);
             localStorage.setItem('refreshToken', response.data.refresh);
             localStorage.setItem('user', JSON.stringify(response.data.user));
-            alert(JSON.stringify(response.data));
+            navigate("/")
         } 
         catch (error) {
             alert('Credenciais inválidas');

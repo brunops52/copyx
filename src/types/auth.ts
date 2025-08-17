@@ -11,6 +11,11 @@ export interface registerFormData {
   last_name: string;
 }
 
+export interface TweetFormData {
+  content: string;
+  image: string | null;
+}
+
 export interface User {
   id: number;
   username: string;
