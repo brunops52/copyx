@@ -112,3 +112,49 @@ export interface UserResponse {
 export interface IsFollowingResponse {
     is_following: boolean;
 }
+
+export interface NotificationResponse {
+    "count": number,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": number,
+            "actor": {
+                "id": number,
+                "username": string,
+                "email": string,
+                "first_name": string,
+                "last_name": string,
+                "bio": string | null,
+                "profile_picture": string,
+                "cover_photo": null,
+                "followers_count": number,
+                "following_count": number
+            },
+            "notification_type": string,
+            "tweet":Tweet | null,
+            "created_at": string,
+            "message": string
+        }
+    ]
+}
+export interface Notification {
+            "id": number,
+            "actor": {
+                "id": number,
+                "username": string,
+                "email": string,
+                "first_name": string,
+                "last_name": string,
+                "bio": string | null,
+                "profile_picture": string,
+                "cover_photo": null,
+                "followers_count": number,
+                "following_count": number
+            },
+            "notification_type": string,
+            "tweet":Tweet | null,
+            "created_at": string,
+            "message": string
+        }

@@ -1,13 +1,9 @@
-import { AiOutlineSearch, } from "react-icons/ai";
 
 const RightAside = () => {
 
     return (
         <aside className='w-full max-w-[416px] text-white px-6 pt-3 sticky left-0 top-0 h-screen'>
-            <div className="border-1 border-neutral-700 rounded-full p-3 flex items-center gap-3">
-                <AiOutlineSearch   className="w-7 h-7 text-neutral-500"/>
-                <input placeholder="Buscar" type="text" className="focus:outline-0"/>
-            </div>
+            
             <div className="p-5 border-1 border-neutral-700 rounded-2xl mt-7">
                 <h2 className="text-2xl font-bold">Assine o Premium</h2>
                 <p className="text-xs my-5">Assine para desbloquear novos recursos e, se elegível, receba uma parte da receita.</p>
