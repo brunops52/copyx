@@ -3,8 +3,11 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { IoChatbubbleEllipsesOutline, IoStatsChart, IoBookmarkOutline, IoBookmark  } from "react-icons/io5";
 import { FaRetweet } from "react-icons/fa6";
 import { MdOutlineFileUpload } from "react-icons/md";
-import type { Tweet as TweetType } from '../types/auth';
+import type { Tweet as TweetType, AuthResponse } from '../types/auth';
+import api from '../services/api';
 import { timeAgo } from "../utils/timeAgo";
+
+
 
 
 type TweetProps = {
@@ -17,6 +20,17 @@ const Tweet = ({
     tweet,
     handleButtonMenu 
 }: TweetProps) => {
+
+    const handleTweetLikeSubmit = async () => {
+    try {
+        console.log(tweet.id)
+        await api.post<AuthResponse>(`tweets/${tweet.id}/like/`);
+        window.location.reload();
+    } catch (error) {
+        alert('Conteúdo inválido');
+        console.error('error:', error);
+    }
+};
 
     return (
         <div className="text-white">
@@ -36,7 +50,7 @@ const Tweet = ({
                         <div className="flex items-center justify-between gap-7 text-neutral-500">
                             <span onClick={() => {if (handleButtonMenu) {handleButtonMenu("POST")} }} className="flex cursor-pointer hover:text-primary_blue"><IoChatbubbleEllipsesOutline className="w-6 h-6 mr-1"/> {tweet.mentions.length}</span>
                             <span className="flex cursor-pointer hover:text-primary_blue"><FaRetweet className="w-6 h-6 mr-1"/> 0</span>
-                            <span className="flex cursor-pointer hover:text-primary_blue">{tweet.is_liked ? (<AiFillHeart className="w-6 h-6 mr-1"/>) : (<AiOutlineHeart className="w-6 h-6 mr-1"/>)} {tweet.likes.length}</span>
+                            <span onClick={handleTweetLikeSubmit} className="flex cursor-pointer hover:text-primary_blue">{tweet.is_liked ? (<AiFillHeart className="w-6 h-6 mr-1 text-red-600"/>) : (<AiOutlineHeart className="w-6 h-6 mr-1"/>)} {tweet.likes.length}</span>
                             <span className="flex cursor-pointer hover:text-primary_blue"><IoStatsChart className="w-6 h-6 mr-1"/> 0</span>
                             <div className="flex items-center gap-2">
                                 <IoBookmarkOutline className="cursor-pointer w-6 h-6 hover:text-primary_blue"/>
