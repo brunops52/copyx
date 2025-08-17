@@ -50,7 +50,8 @@ export interface Tweet {
       following_count: number;
     };
     is_liked: boolean;
-    mentioned_users: User[]; // ou tipa se souber a estrutura
+    is_bookmarked: boolean;
+    mentioned_users: User[];
     content: string;
     image: string | null;
     created_at: string;
@@ -76,7 +77,8 @@ export interface TweetsResponse {
       following_count: number;
     };
     is_liked: boolean;
-    mentioned_users: User[]; // ou tipa se souber a estrutura
+    is_bookmarked: boolean;
+    mentioned_users: User[];
     content: string;
     image: string | null;
     created_at: string;
