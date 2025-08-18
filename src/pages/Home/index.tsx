@@ -76,7 +76,7 @@ const Home = () => {
                         )
                     case "TAG":
                         return (
-                            <TagPage handleButtonMenu={handleButtonMenu}/>
+                            <TagPage handleUser={handleUser} handleButtonMenu={handleButtonMenu}/>
                         )
                     case "PROFILE":
                         return (

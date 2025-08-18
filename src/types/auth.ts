@@ -114,47 +114,67 @@ export interface IsFollowingResponse {
 }
 
 export interface NotificationResponse {
-    "count": number,
-    "next": null,
-    "previous": null,
-    "results": [
+    count: number,
+    next: null,
+    previous: null,
+    results: [
         {
-            "id": number,
-            "actor": {
-                "id": number,
-                "username": string,
-                "email": string,
-                "first_name": string,
-                "last_name": string,
-                "bio": string | null,
-                "profile_picture": string,
-                "cover_photo": null,
-                "followers_count": number,
-                "following_count": number
+            id: number,
+            actor: {
+                id: number,
+                username: string,
+                email: string,
+                first_name: string,
+                last_name: string,
+                bio: string | null,
+                profile_picture: string,
+                cover_photo: null,
+                followers_count: number,
+                following_count: number
             },
-            "notification_type": string,
-            "tweet":Tweet | null,
-            "created_at": string,
-            "message": string
+            notification_type: string,
+            tweet:Tweet | null,
+            created_at: string,
+            message: string
         }
     ]
 }
 export interface Notification {
-            "id": number,
-            "actor": {
-                "id": number,
-                "username": string,
-                "email": string,
-                "first_name": string,
-                "last_name": string,
-                "bio": string | null,
-                "profile_picture": string,
-                "cover_photo": null,
-                "followers_count": number,
-                "following_count": number
+            id: number,
+            actor: {
+                id: number,
+                username: string,
+                email: string,
+                first_name: string,
+                last_name: string,
+                bio: string | null,
+                profile_picture: string,
+                cover_photo: null,
+                followers_count: number,
+                following_count: number
             },
-            "notification_type": string,
-            "tweet":Tweet | null,
-            "created_at": string,
-            "message": string
+            notification_type: string,
+            tweet:Tweet | null,
+            created_at: string,
+            message: string
         }
+
+export interface BookmarksResponse {
+    count: number,
+    next: null,
+    previous: null,
+    results: [
+        {
+            id: number,
+            tweet: Tweet
+            created_at: string,
+            user: number
+        }
+    ]
+}
+export interface Bookmarks {
+  id: number,
+  tweet: Tweet,
+  created_at: string,
+  user: number
+}
