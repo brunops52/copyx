@@ -39,6 +39,9 @@ const ProfilePage = ({ handleButtonMenu, handleUser }: ProfilePageProps) => {
   const fileInputProfileRef = useRef<HTMLInputElement | null>(null);
   const [profilePic, setProfilePic] = useState<File | null>(null);
   const [coverPic, setCoverPic] = useState<File | null>(null);
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
 
 
   const handleButtonCoverClick = () => {
@@ -69,16 +72,12 @@ const ProfilePage = ({ handleButtonMenu, handleUser }: ProfilePageProps) => {
       return;
     }
     
-
-
     const formData = new FormData();
     coverPic && formData.append("cover_photo", coverPic);
     profilePic && formData.append("profile_picture", profilePic);
     bioText && formData.append("bio", bioText);
     firstNameText && formData.append("first_name", firstNameText);
     lastNameText && formData.append("last_name", lastNameText);
-
-
 
     try {
       await api.put("profile/", formData, {
@@ -99,8 +98,43 @@ const ProfilePage = ({ handleButtonMenu, handleUser }: ProfilePageProps) => {
 
       alert("Alteração realizada com sucesso!");
     } catch (error) {
-      console.error("Erro ao atualizar foto:", error);
-      alert("Erro ao atualizar a foto");
+      console.error("Erro ao atualizar:", error);
+      alert("Erro ao atualizar");
+    }
+  };
+
+  const handlePasswordChange = async (e: React.FormEvent) => {
+    e.preventDefault(); 
+
+
+    if (newPassword != confirmPassword) {
+      alert("As senha não coincidem");
+      return;
+    }
+    
+    const formData = new FormData();
+      oldPassword && formData.append("old_password", oldPassword);
+      newPassword && formData.append("new_password", newPassword);
+
+    try {
+      await api.put("change-password/", formData);
+
+      const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+          const parsedUser = JSON.parse(storedUser);
+          const response = await api.get<UserDetailResponse>(
+            `users/${parsedUser.id}/profile/`
+          );
+
+          setSelfUser(response.data);
+
+          localStorage.setItem("user", JSON.stringify(response.data));
+      }
+      setShowModalEditPass(false),
+      alert("Alteração realizada com sucesso!");
+    } catch (error) {
+      console.error("Erro ao atualizar senha:", error);
+      alert("Erro ao atualizar a senha");
     }
   };
 
@@ -282,8 +316,10 @@ const ProfilePage = ({ handleButtonMenu, handleUser }: ProfilePageProps) => {
                   </div>
                   <div className="flex items-center justify-center w-full my-6">
                     <button
+                      type="button"
                       onClick={() => {
-                        setShowModalEditPass(true);
+                        setShowModalEditPass(true),
+                        setShowModalEditProfile(false)
                       }}
                       className="py-1 px-6 border-2 border-neutral-700 rounded-full cursor-pointer"
                     >
@@ -297,7 +333,7 @@ const ProfilePage = ({ handleButtonMenu, handleUser }: ProfilePageProps) => {
         </div>
       )}
       {showModalEditPass && (
-        <div className="fixed inset-0 z-50 overflow-y-auto h-screen flex items-center justify-center bg-gray-700/60 text-white">
+        <form onSubmit={handlePasswordChange} className="fixed inset-0 z-50 overflow-y-auto h-screen flex items-center justify-center bg-gray-700/60 text-white">
           <div className="p-4 bg-black w-full max-w-[252px] rounded-2xl">
             <div className="flex flex-col text-white font-bold px-6">
               <h3 className="text-2xl mb-8">Alterar senha</h3>
@@ -306,31 +342,37 @@ const ProfilePage = ({ handleButtonMenu, handleUser }: ProfilePageProps) => {
                 className="mb-2.5 border-[0.1px] border-white rounded-sm p-2 w-full focus:outline-none focus:border-primary_blue focus:border-2 focus:placeholder:text-primary_blue"
                 type="password"
                 name="currentPassword"
+                onChange={(e) => setOldPassword(e.target.value)}
+
               />
               <input
-                placeholder="Senha Atual"
+                placeholder="Nova senha"
                 className="mb-2.5 border-[0.1px] border-white rounded-sm p-2 w-full focus:outline-none focus:border-primary_blue focus:border-2 focus:placeholder:text-primary_blue"
                 type="password"
-                name="currentPassword"
+                name="newPassword"
+                onChange={(e) => setNewPassword(e.target.value)}
               />
               <input
-                placeholder="Senha Atual"
+                placeholder="Confirme a senha"
                 className="border-[0.1px] border-white rounded-sm p-2 w-full focus:outline-none focus:border-primary_blue focus:border-2 focus:placeholder:text-primary_blue"
                 type="password"
-                name="currentPassword"
+                name="confirmPassword"
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
               <div className="grid grid-cols-2 gap-4 mt-6">
                 <button
-                  onClick={() => {
-                    setShowModalEditPass(false);
-                  }}
+                  type="submit"
                   className=" bg-white text-black py-1 w-full rounded-4xl hover:bg-neutral-300 cursor-pointer"
                 >
                   Salvar
                 </button>
                 <button
+                  type="button"
                   onClick={() => {
-                    setShowModalEditPass(false);
+                    setShowModalEditPass(false),
+                    setOldPassword(""),
+                    setNewPassword,
+                    setConfirmPassword("")
                   }}
                   className=" text-white bg-black py-1 w-full border-2 rounded-4xl hover:bg-neutral-800 cursor-pointer"
                 >
@@ -339,7 +381,7 @@ const ProfilePage = ({ handleButtonMenu, handleUser }: ProfilePageProps) => {
               </div>
             </div>
           </div>
-        </div>
+        </form>
       )}
       <div className="w-full h-full min-h-screen border-x-1 border-neutral-700 text-white font-bold relative">
         <div

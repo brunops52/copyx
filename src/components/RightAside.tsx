@@ -1,6 +1,6 @@
 const RightAside = () => {
   return (
-    <aside className="w-full max-w-[416px] text-white px-6 pt-3 sticky left-0 top-0 h-screen">
+    <aside className={`w-full max-w-[416px]  text-white px-6 pt-3 sticky left-0 top-0 h-screen ${document.documentElement.scrollHeight > window.innerHeight ? ("max-w-16px") : ("max-w-[416px]")}`}>
       <div className="p-5 border-1 border-neutral-700 rounded-2xl mt-7">
         <h2 className="text-2xl font-bold">Assine o Premium</h2>
         <p className="text-xs my-5">
