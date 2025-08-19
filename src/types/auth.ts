@@ -36,28 +36,28 @@ export interface AuthResponse {
 }
 
 export interface Tweet {
+  id: number;
+  user: {
     id: number;
-    user: {
-      id: number;
-      username: string;
-      email: string;
-      first_name: string;
-      last_name: string;
-      bio: string | null;
-      profile_picture: string;
-      cover_photo: string | null;
-      followers_count: number;
-      following_count: number;
-    };
-    is_liked: boolean;
-    is_bookmarked: boolean;
-    mentioned_users: User[];
-    content: string;
-    image: string | null;
-    created_at: string;
-    likes: any[]; // idem
-    mentions: any[];
-  }
+    username: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+    bio: string | null;
+    profile_picture: string;
+    cover_photo: string | null;
+    followers_count: number;
+    following_count: number;
+  };
+  is_liked: boolean;
+  is_bookmarked: boolean;
+  mentioned_users: User[];
+  content: string;
+  image: string | null;
+  created_at: string;
+  likes: any[]; // idem
+  mentions: any[];
+}
 export interface TweetsResponse {
   count: number;
   next: string | null;
@@ -88,93 +88,93 @@ export interface TweetsResponse {
 }
 
 export interface UserDetailResponse {
-      id: number;
-      username: string;
-      email: string;
-      first_name: string;
-      last_name: string;
-      bio: string | null;
-      profile_picture: string;
-      cover_photo: string | null;
-      followers_count: number;
-      following_count: number;
-    tweets: Tweet[],
-    liked_tweets: Tweet[]
+  id: number;
+  username: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+  bio: string | null;
+  profile_picture: string;
+  cover_photo: string | null;
+  followers_count: number;
+  following_count: number;
+  tweets: Tweet[];
+  liked_tweets: Tweet[];
 }
 
 export interface UserResponse {
   count: number;
   next: string | null;
   previous: string | null;
-  results: User[]
+  results: User[];
 }
 
 export interface IsFollowingResponse {
-    is_following: boolean;
+  is_following: boolean;
 }
 
 export interface NotificationResponse {
-    count: number,
-    next: null,
-    previous: null,
-    results: [
-        {
-            id: number,
-            actor: {
-                id: number,
-                username: string,
-                email: string,
-                first_name: string,
-                last_name: string,
-                bio: string | null,
-                profile_picture: string,
-                cover_photo: null,
-                followers_count: number,
-                following_count: number
-            },
-            notification_type: string,
-            tweet:Tweet | null,
-            created_at: string,
-            message: string
-        }
-    ]
+  count: number;
+  next: null;
+  previous: null;
+  results: [
+    {
+      id: number;
+      actor: {
+        id: number;
+        username: string;
+        email: string;
+        first_name: string;
+        last_name: string;
+        bio: string | null;
+        profile_picture: string;
+        cover_photo: null;
+        followers_count: number;
+        following_count: number;
+      };
+      notification_type: string;
+      tweet: Tweet | null;
+      created_at: string;
+      message: string;
+    },
+  ];
 }
 export interface Notification {
-            id: number,
-            actor: {
-                id: number,
-                username: string,
-                email: string,
-                first_name: string,
-                last_name: string,
-                bio: string | null,
-                profile_picture: string,
-                cover_photo: null,
-                followers_count: number,
-                following_count: number
-            },
-            notification_type: string,
-            tweet:Tweet | null,
-            created_at: string,
-            message: string
-        }
+  id: number;
+  actor: {
+    id: number;
+    username: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+    bio: string | null;
+    profile_picture: string;
+    cover_photo: null;
+    followers_count: number;
+    following_count: number;
+  };
+  notification_type: string;
+  tweet: Tweet | null;
+  created_at: string;
+  message: string;
+}
 
 export interface BookmarksResponse {
-    count: number,
-    next: null,
-    previous: null,
-    results: [
-        {
-            id: number,
-            tweet: Tweet
-            created_at: string,
-            user: number
-        }
-    ]
+  count: number;
+  next: null;
+  previous: null;
+  results: [
+    {
+      id: number;
+      tweet: Tweet;
+      created_at: string;
+      user: number;
+    },
+  ];
 }
 export interface Bookmarks {
-  id: number,
-  tweet: Tweet,
-  created_at: string,
-  user: number
+  id: number;
+  tweet: Tweet;
+  created_at: string;
+  user: number;
 }

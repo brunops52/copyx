@@ -1,5 +1,3 @@
-
-
 export type DateInfo = {
   date: string;
   time: string;
@@ -9,8 +7,8 @@ export type DateInfo = {
 };
 
 /**.
- * @param isoString 
- * @param useLocalTime 
+ * @param isoString
+ * @param useLocalTime
  */
 export function parseDateTime(
   isoString: string,
