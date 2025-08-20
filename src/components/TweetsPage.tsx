@@ -1,169 +1,166 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { GoPersonFill } from "react-icons/go";
-import { 
-    AiOutlineFileImage, 
-    AiOutlineFileGif, 
-    AiOutlineCalendar, 
-    AiOutlineSmile, 
-    AiOutlineEnvironment } from "react-icons/ai";
+import {
+  AiOutlineFileImage,
+  AiOutlineFileGif,
+  AiOutlineCalendar,
+  AiOutlineSmile,
+  AiOutlineEnvironment,
+} from "react-icons/ai";
 import Tweet from "./Tweet";
+import api from "../services/api";
+import type {
+  TweetFormData,
+  Tweet as TweetType,
+  TweetsResponse,
+  AuthResponse,
+  User,
+} from "../types/auth";
 
 type TweetsPageProps = {
-    handleButtonMenu: (menu: string) => void;
+  handleButtonMenu: (menu: string) => void;
+  handleUser: (user: User) => void;
 };
 
-const TweetsPage = ({handleButtonMenu}: TweetsPageProps) => {
-    const [showFollowing, setShowFollowing] = useState(true);
-    const [showForYou, setShowForYou] = useState(false);
-    const [tweetText, setTweetText] = useState('');
+const TweetsPage = ({ handleButtonMenu, handleUser }: TweetsPageProps) => {
+  const [showFollowing, setShowFollowing] = useState(true);
+  const [showForYou, setShowForYou] = useState(false);
+  const [tweets, setTweets] = useState<TweetType[]>();
+  const [timeline, setTimeline] = useState<TweetType[]>();
 
+  const [formData, setFormData] = useState<TweetFormData>({
+    content: "",
+    image: null,
+  });
 
-    const tweet = [
-        {
-             user: "nome sobren...",
-             account: "conta", 
-             time: "22", 
-             content: "Pra quem não me conhece e passou a me seguir faz pouco tempo, eu me chamo Vinícius, sou designer freelance (ainda cursando, mas quase completando) e eu levo MUITO a sério meu trabalho. Tiro meu pouco sustento disso, por vezes levo horas e me dedico ao máximo pra isso (+)", 
-             comments: [     
-                            {
-                                user: '/src/assets/LOGO_X.svg',
-                                content: 'comentario teste',
-                                time: '30 de jul'
-                            },
-                            {
-                                user: 'https://media.licdn.com/dms/image/v2/D4E03AQH6CzfgKuAXXw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1699646804140?e=1757548800&v=beta&t=Vm1k6H39yAIon7sVUdBNLZ7OaXaKkTuZu08-aB7-17o',
-                                content: 'comentario teste 2',
-                                time: '30 de jul'
-                            }
-                        ],
-             retweets: 10000, 
-             likes: 10000, 
-             views: 10000 
-        },
-        {
-             user: "nome sobren...",
-             account: "conta", 
-             time: "22", 
-             content: "Pra quem não me conhece e passou a me seguir faz pouco tempo, eu me chamo Vinícius, sou designer freelance (ainda cursando, mas quase completando) e eu levo MUITO a sério meu trabalho. Tiro meu pouco sustento disso, por vezes levo horas e me dedico ao máximo pra isso (+)", 
-             comments: [     
-                            {
-                                user: '/src/assets/LOGO_X.svg',
-                                content: 'comentario teste',
-                                time: '30 de jul'
-                            },
-                            {
-                                user: 'https://media.licdn.com/dms/image/v2/D4E03AQH6CzfgKuAXXw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1699646804140?e=1757548800&v=beta&t=Vm1k6H39yAIon7sVUdBNLZ7OaXaKkTuZu08-aB7-17o',
-                                content: 'comentario teste 2',
-                                time: '30 de jul'
-                            }
-                        ],
-             retweets: 10000, 
-             likes: 10000, 
-             views: 10000 
-        },
-        {
-             user: "nome sobren...",
-             account: "conta", 
-             time: "22", 
-             content: "Pra quem não me conhece e passou a me seguir faz pouco tempo, eu me chamo Vinícius, sou designer freelance (ainda cursando, mas quase completando) e eu levo MUITO a sério meu trabalho. Tiro meu pouco sustento disso, por vezes levo horas e me dedico ao máximo pra isso (+)", 
-             comments: [     
-                            {
-                                user: '/src/assets/LOGO_X.svg',
-                                content: 'comentario teste',
-                                time: '30 de jul'
-                            },
-                            {
-                                user: 'https://media.licdn.com/dms/image/v2/D4E03AQH6CzfgKuAXXw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1699646804140?e=1757548800&v=beta&t=Vm1k6H39yAIon7sVUdBNLZ7OaXaKkTuZu08-aB7-17o',
-                                content: 'comentario teste 2',
-                                time: '30 de jul'
-                            }
-                        ],
-             retweets: 10000, 
-             likes: 10000, 
-             views: 10000 
-        }
-    ];
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    return (
-                <div className=" w-full border-x-1 border-neutral-700 relative">
-                    <div className="grid grid-cols-2 w-full max-h-16 bg-black/70 text-neutral-500 font-bold place-items-center border-b-1 border-neutral-700  sticky top-0 left-0">
-                        <button onClick={() => (setShowForYou(true), setShowFollowing(false))} className="cursor-pointer w-full h-full hover:bg-neutral-900 transition-colors">
-                            <span className={`inline-block  ${showForYou ? 'border-b-4 border-primary_blue py-4 text-white' : ''}`}>
-                                Pare você
-                            </span>
-                        </button>
-                        <button onClick={() => (setShowFollowing(true), setShowForYou(false))} className="cursor-pointer w-full h-full hover:bg-neutral-900 transition-colors">
-                            <span className={`inline-block   ${showFollowing ? 'border-b-4 border-primary_blue py-4 text-white' : ''}`}>
-                                Seguindo
-                            </span>
-                        </button>
-                    </div>
-                    <div className=" text-white p-5 text-2xl border-b-1 border-neutral-700">
-                        <div className="flex gap-8 mb-5">
-                            <span className="w-12 h-12 bg-neutral-400 rounded-full flex items-center justify-center text-neutral-700">
-                                <GoPersonFill className=" w-12 h-9"/>
-                            </span>
-                            <textarea
-                                value={tweetText}
-                                onChange={(e) => setTweetText(e.target.value)}
-                                className="w-full border-none resize-none overflow-hidden focus:outline-none"
-                                style={{ height: 'auto', minHeight: '40px' }}
-                                onInput={(e) => {
-                                    const target = e.target as HTMLTextAreaElement;
-                                    target.style.height = 'auto';
-                                    target.style.height = target.scrollHeight + 'px';
-                                }}
-                                placeholder="O que está acontecendo?"
-                            />
-                        </div>
-                        <div className="flex justify-between">
-                            <div className="flex items-center justify-between gap-7 ml-24 text-primary_blue">
-                                <AiOutlineFileImage className="cursor-pointer"/>
-                                <AiOutlineFileGif className="cursor-pointer"/>
-                                <AiOutlineCalendar className="cursor-pointer"/>
-                                <AiOutlineSmile className="cursor-pointer"/>
-                                <AiOutlineEnvironment className="cursor-pointer"/>
-                            </div>
-                            <button className={` text-black text-xl font-bold py-2 px-3.5 rounded-full cursor-pointer ${!tweetText ? 'bg-neutral-600' : 'bg-white'} transition-colors`}>
-                                Postar
-                            </button>
-                        </div>
-                    </div>
-                    {showFollowing  ? (
-                        <>
-                            {tweet.map((singleTweet, index) => (
-                                <Tweet
-                                    key={index}
-                                    user={singleTweet.user}
-                                    account={singleTweet.account}
-                                    time={singleTweet.time}
-                                    content={singleTweet.content}
-                                    comments={singleTweet.comments}
-                                    retweets={singleTweet.retweets}
-                                    likes={singleTweet.likes}
-                                    views={singleTweet.views}
-                                    handleButtonMenu={handleButtonMenu}
-                                />
-                            ))}
-                        </>
-                    ): (
-                        <>
-                        <Tweet
-                            user={tweet[0].user}
-                            account={tweet[0].account}
-                            time={tweet[0].time}
-                            content={tweet[0].content}
-                            comments={tweet[0].comments}
-                            retweets={tweet[0].retweets}
-                            likes={tweet[0].likes}
-                            views={tweet[0].views}
-                            handleButtonMenu={handleButtonMenu}
-                        />
-                        </>
-                    )}
-                </div>
-    )
-  }
+  const fetchTweets = async () => {
+    try {
+      const response = await api.get<TweetsResponse>("tweets/");
+      console.log("response.data:", response.data);
+      setTweets(response.data.results);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  const fetchTimeline = async () => {
+    try {
+      const response = await api.get<TweetsResponse>("timeline/");
+      console.log("response.data:", response.data);
+      setTimeline(response.data.results);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-  export default TweetsPage
+  const handleTweetSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await api.post<AuthResponse>("tweets/", formData);
+
+      fetchTweets();
+      fetchTimeline();
+    } catch (error) {
+      alert("Conteúdo inválido");
+      console.error("error:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTweets();
+    fetchTimeline();
+  }, []);
+
+  return (
+    <div className=" w-full border-x-1 border-neutral-700 relative">
+      <div className="grid grid-cols-2 w-full max-h-16 bg-black/70 text-neutral-500 font-bold place-items-center border-b-1 border-neutral-700  sticky top-0 left-0">
+        <button
+          onClick={() => (setShowForYou(true), setShowFollowing(false))}
+          className="cursor-pointer w-full h-full hover:bg-neutral-900 transition-colors"
+        >
+          <span
+            className={`inline-block  ${showForYou ? "border-b-4 border-primary_blue py-4 text-white" : ""}`}
+          >
+            Pare você
+          </span>
+        </button>
+        <button
+          onClick={() => (setShowFollowing(true), setShowForYou(false))}
+          className="cursor-pointer w-full h-full hover:bg-neutral-900 transition-colors"
+        >
+          <span
+            className={`inline-block   ${showFollowing ? "border-b-4 border-primary_blue py-4 text-white" : ""}`}
+          >
+            Seguindo
+          </span>
+        </button>
+      </div>
+      <form
+        onSubmit={handleTweetSubmit}
+        className=" text-white p-5 text-2xl border-b-1 border-neutral-700"
+      >
+        <div className="flex gap-8 mb-5">
+          <span className="w-12 h-12 bg-neutral-400 rounded-full flex items-center justify-center text-neutral-700">
+            <GoPersonFill className=" w-12 h-9" />
+          </span>
+          <textarea
+            value={formData.content}
+            name="content"
+            onChange={handleChange}
+            className="w-full border-none resize-none overflow-hidden focus:outline-none"
+            style={{ height: "auto", minHeight: "40px" }}
+            placeholder="O que está acontecendo?"
+          />
+        </div>
+        <div className="flex justify-between">
+          <div className="flex items-center justify-between gap-7 ml-24 text-primary_blue">
+            <AiOutlineFileImage className="cursor-pointer" />
+            <AiOutlineFileGif className="cursor-pointer" />
+            <AiOutlineCalendar className="cursor-pointer" />
+            <AiOutlineSmile className="cursor-pointer" />
+            <AiOutlineEnvironment className="cursor-pointer" />
+          </div>
+          <button
+            className={` text-black text-xl font-bold py-2 px-3.5 rounded-full cursor-pointer ${!formData.content ? "bg-neutral-600" : "bg-white"} transition-colors`}
+          >
+            Postar
+          </button>
+        </div>
+      </form>
+      {showFollowing ? (
+        <>
+          {tweets &&
+            tweets.map((singleTweet, index) => (
+              <Tweet
+                key={index}
+                tweet={singleTweet}
+                handleButtonMenu={handleButtonMenu}
+                handleUser={handleUser}
+              />
+            ))}
+        </>
+      ) : (
+        <>
+          {timeline &&
+            timeline.map((singleTweet, index) => (
+              <Tweet
+                key={index}
+                tweet={singleTweet}
+                handleButtonMenu={handleButtonMenu}
+                handleUser={handleUser}
+              />
+            ))}
+        </>
+      )}
+    </div>
+  );
+};
+
+export default TweetsPage;
