@@ -11,7 +11,6 @@ import type {
 } from "../types/auth";
 import api from "../services/api";
 import Tweet from "./Tweet";
-import { useNavigate } from "react-router-dom";
 import ShowRelations from "./ShowRelations";
 
 type AnotherProfilePageProps = {
@@ -25,7 +24,6 @@ const AnotherProfilePage = ({
   user,
   handleUser,
 }: AnotherProfilePageProps) => {
-  const navigate = useNavigate();
   const [showFolllowersFollowing, setShowFolllowersFollowing] = useState(false);
   const [showlikedPosts, setShowlikedPosts] = useState(true);
   const [showFollowing, setShowFollowing] = useState(false);

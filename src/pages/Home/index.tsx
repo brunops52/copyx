@@ -7,9 +7,8 @@ import NotificationPage from "../../components/NotificationPage";
 import ProfilePage from "../../components/ProfilePage";
 import RightAside from "../../components/RightAside";
 import TagPage from "../../components/TagPage";
-import TweetPage from "../../components/TweetPage";
 import TweetsPage from "../../components/TweetsPage";
-import type { Tweet, User } from "../../types/auth";
+import type {  User } from "../../types/auth";
 
 const Home = () => {
   const [toRender, setToRender] = useState("HOME");
@@ -26,37 +25,10 @@ const Home = () => {
     following_count: 0,
   });
 
-  const [tweet, setTweet] = useState<Tweet>({
-    id: 1,
-    user: {
-      id: 1,
-      username: "string",
-      email: "string",
-      first_name: "string",
-      last_name: "string",
-      bio: "string",
-      profile_picture: "string",
-      cover_photo: "string",
-      followers_count: 1,
-      following_count: 1,
-    },
-    is_liked: false,
-    is_bookmarked: false,
-    mentioned_users: [],
-    content: "string",
-    image: "string",
-    created_at: "string",
-    likes: [],
-    mentions: [],
-  });
-
   const handleUser = (user: User) => {
     setUser(user);
   };
 
-  const handleTweet = (tweet: Tweet) => {
-    setTweet(tweet);
-  };
 
   const handleButtonMenu = (menuOption: string) => {
     setToRender(menuOption);
@@ -99,10 +71,6 @@ const Home = () => {
                 handleUser={handleUser}
                 handleButtonMenu={handleButtonMenu}
               />
-            );
-          case "POST":
-            return (
-              <TweetPage tweet={tweet} handleButtonMenu={handleButtonMenu} />
             );
           default:
             return (

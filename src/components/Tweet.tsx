@@ -28,7 +28,6 @@ type TweetProps = {
 };
 
 const Tweet = ({ tweet, handleButtonMenu, handleUser }: TweetProps) => {
-  const [tweetText, setTweetText] = useState("");
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState<CommentType[]>([]);
   const [formData, setFormData] = useState<TweetFormData>({
