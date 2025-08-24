@@ -1,14 +1,14 @@
 import { useState } from "react";
 
-import LeftAside from "../../components/LeftAside";
-import RightAside from "../../components/RightAside";
-import TweetsPage from "../../components/TweetsPage";
-import ExplorePage from "../../components/ExplorePage";
-import NotificationPage from "../../components/NotificationPage";
-import TagPage from "../../components/TagPage";
-import ProfilePage from "../../components/ProfilePage";
 import AnotherProfilePage from "../../components/AnotherProfilePage";
+import ExplorePage from "../../components/ExplorePage";
+import LeftAside from "../../components/LeftAside";
+import NotificationPage from "../../components/NotificationPage";
+import ProfilePage from "../../components/ProfilePage";
+import RightAside from "../../components/RightAside";
+import TagPage from "../../components/TagPage";
 import TweetPage from "../../components/TweetPage";
+import TweetsPage from "../../components/TweetsPage";
 import type { Tweet, User } from "../../types/auth";
 
 const Home = () => {

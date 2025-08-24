@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
-import Tweet from "./Tweet";
+import api from "../services/api";
 import type {
   Bookmarks,
   BookmarksResponse,
-  TweetsResponse,
-  Tweet as TweetType,
-  User,
+  User
 } from "../types/auth";
-import api from "../services/api";
+import Tweet from "./Tweet";
 
 type TagPageProps = {
   handleButtonMenu: (menu: string) => void;

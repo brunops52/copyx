@@ -1,14 +1,14 @@
 import { useState } from "react";
-import logo from "../../assets/LOGO_X.svg";
 import { IoClose } from "react-icons/io5";
+import logo from "../../assets/LOGO_X.svg";
 
+import { useNavigate } from "react-router-dom";
+import api from "../../services/api";
 import type {
-  LoginFormData,
   AuthResponse,
+  LoginFormData,
   registerFormData,
 } from "../../types/auth";
-import api from "../../services/api";
-import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
