@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 import type { AxiosRequestConfig } from "axios";
 
 const api = axios.create({
-  baseURL: "http://Brunops52.pythonanywhere.com/api/",
+  baseURL: "https://Brunops52.pythonanywhere.com/api/",
 });
 
 api.interceptors.request.use((config) => {
