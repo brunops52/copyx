@@ -109,9 +109,17 @@ const LeftAside = ({ handleButtonMenu }: LeftAsideProps) => {
         <span className="text-white text-2xl">Perfil</span>
       </button>
       <div className="flex mt-10 cursor-pointer hover:bg-neutral-900 p-3 rounded-full">
-        <span className="w-12 h-12 bg-neutral-400 rounded-full flex items-center justify-center text-neutral-700">
-          <GoPersonFill className=" w-12 h-9" />
-        </span>
+        {selfUser?.profile_picture ? (
+                <img
+                  src={`https://brunops52.pythonanywhere.com/${selfUser.profile_picture}`}
+                  alt="X Logo"
+                  className="w-12 h-12 rounded-full p-0.5"
+                />
+                ) : (
+                  <span className="w-12 h-12 bg-neutral-400 rounded-full flex items-center justify-center text-neutral-700 cursor-pointer">
+                    <GoPersonFill className=" w-12 h-9" />
+                  </span>
+                )}
         <div className="ml-4">
           <h3 className="font-bold flex items-center text-white">
             {selfUser?.first_name} {selfUser?.last_name}

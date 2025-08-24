@@ -30,6 +30,7 @@ type TweetProps = {
 const Tweet = ({ tweet, handleButtonMenu, handleUser }: TweetProps) => {
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState<CommentType[]>([]);
+  const [selfUser, setSelfUser] = useState<User>();
   const [formData, setFormData] = useState<TweetFormData>({
       content: "",
       image: null,
@@ -89,6 +90,13 @@ const Tweet = ({ tweet, handleButtonMenu, handleUser }: TweetProps) => {
     }
   };
   useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+        const parsedUser = JSON.parse(storedUser);
+
+        setSelfUser(parsedUser);
+      }
+
     fetchComments();
   }, [tweet.id]);
 
@@ -182,17 +190,17 @@ const Tweet = ({ tweet, handleButtonMenu, handleUser }: TweetProps) => {
         <>
           <div className=" text-white p-5 text-2xl border-b-1 border-neutral-700">
             <div className="flex gap-8">
-              {tweet.user.profile_picture ? (
+              {selfUser?.profile_picture ? (
                 <img
-                  src={tweet.user.profile_picture}
+                  src={`https://brunops52.pythonanywhere.com/${selfUser.profile_picture}`}
                   alt="X Logo"
                   className="w-12 h-12 rounded-full p-0.5"
                 />
-              ) : (
-                <span className="w-12 h-12 bg-neutral-400 rounded-full flex items-center justify-center text-neutral-700 cursor-pointer">
-                  <GoPersonFill className=" w-12 h-9" />
-                </span>
-              )}
+                ) : (
+                  <span className="w-12 h-12 bg-neutral-400 rounded-full flex items-center justify-center text-neutral-700 cursor-pointer">
+                    <GoPersonFill className=" w-12 h-9" />
+                  </span>
+                )}
               <textarea
                 value={formData.content}
                 name="content"
