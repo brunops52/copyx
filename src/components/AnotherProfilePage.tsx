@@ -111,7 +111,7 @@ const AnotherProfilePage = ({
     redirectUser();
     fetchTweets();
   }, []);
-  if (selfUser?.id == user.id) navigate("/Login");
+  if (selfUser?.id == user.id) handleButtonMenu("PROFILE");
 
   return (
     <>

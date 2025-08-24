@@ -5,34 +5,15 @@ import { FaRetweet } from "react-icons/fa";
 import { GoPersonFill } from "react-icons/go";
 import { useState } from "react";
 import Comment from "./Comment";
+import type { Tweet } from "../types/auth";
+import { timeAgo } from "../utils/timeAgo";
 
 type TweetPageProps = {
-  user: string;
-  account: string;
-  time: string;
-  content: string;
-  comments: {
-    user: string;
-    content: string;
-    time: string;
-  }[];
-  retweets: number;
-  likes: number;
-  views: number;
+  tweet: Tweet;
   handleButtonMenu: (menu: string) => void;
 };
 
-const TweetPage = ({
-  user,
-  account,
-  time,
-  content,
-  comments,
-  retweets,
-  likes,
-  views,
-  handleButtonMenu,
-}: TweetPageProps) => {
+const TweetPage = ({ tweet, handleButtonMenu }: TweetPageProps) => {
   const [tweetText, setTweetText] = useState("");
 
   return (
@@ -56,9 +37,13 @@ const TweetPage = ({
                   }}
                   className="font-bold cursor-pointer"
                 >
-                  {user}
-                  <span className="text-neutral-500 mx-2">@{account}</span>{" "}
-                  <span className="text-neutral-500">{time}</span>
+                  {tweet.user.first_name}
+                  <span className="text-neutral-500 mx-2">
+                    @{tweet.user.username}
+                  </span>{" "}
+                  <span className="text-neutral-500">
+                    {timeAgo(tweet.created_at)}
+                  </span>
                 </h3>
                 <h2
                   onClick={() => {
@@ -68,17 +53,17 @@ const TweetPage = ({
                   }}
                   className="mb-7"
                 >
-                  {content}
+                  {tweet.content}
                 </h2>
                 <div className="flex items-center justify-between gap-7 text-neutral-500">
                   <span className="flex cursor-pointer hover:text-primary_blue">
-                    <FaRetweet className="w-6 h-6" /> {retweets}k
+                    <FaRetweet className="w-6 h-6" /> 0
                   </span>
                   <span className="flex cursor-pointer hover:text-primary_blue">
-                    <AiOutlineHeart className="w-6 h-6" /> {likes}k
+                    <AiOutlineHeart className="w-6 h-6" /> {tweet.likes}k
                   </span>
                   <span className="flex cursor-pointer hover:text-primary_blue">
-                    <IoStatsChart className="w-6 h-6" /> {views}k
+                    <IoStatsChart className="w-6 h-6" /> 0
                   </span>
                   <div className="flex items-center gap-2">
                     <IoBookmarkOutline className="cursor-pointer w-6 h-6 hover:text-primary_blue" />
@@ -112,7 +97,7 @@ const TweetPage = ({
             </button>
           </div>
         </div>
-        {comments.map((singleNotification, index) => (
+        {tweet.mentions.map((singleNotification, index) => (
           <Comment
             key={index}
             img={singleNotification.user}

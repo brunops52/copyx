@@ -9,7 +9,7 @@ import TagPage from "../../components/TagPage";
 import ProfilePage from "../../components/ProfilePage";
 import AnotherProfilePage from "../../components/AnotherProfilePage";
 import TweetPage from "../../components/TweetPage";
-import type { User } from "../../types/auth";
+import type { Tweet, User } from "../../types/auth";
 
 const Home = () => {
   const [toRender, setToRender] = useState("HOME");
@@ -26,35 +26,40 @@ const Home = () => {
     following_count: 0,
   });
 
+  const [tweet, setTweet] = useState<Tweet>({
+    id: 1,
+    user: {
+      id: 1,
+      username: "string",
+      email: "string",
+      first_name: "string",
+      last_name: "string",
+      bio: "string",
+      profile_picture: "string",
+      cover_photo: "string",
+      followers_count: 1,
+      following_count: 1,
+    },
+    is_liked: false,
+    is_bookmarked: false,
+    mentioned_users: [],
+    content: "string",
+    image: "string",
+    created_at: "string",
+    likes: [],
+    mentions: [],
+  });
+
   const handleUser = (user: User) => {
     setUser(user);
   };
 
-  const handleButtonMenu = (menuOption: string) => {
-    setToRender(menuOption);
+  const handleTweet = (tweet: Tweet) => {
+    setTweet(tweet);
   };
 
-  const tweet = {
-    user: "nome sobren...",
-    account: "conta",
-    time: "22",
-    content:
-      "Pra quem não me conhece e passou a me seguir faz pouco tempo, eu me chamo Vinícius, sou designer freelance (ainda cursando, mas quase completando) e eu levo MUITO a sério meu trabalho. Tiro meu pouco sustento disso, por vezes levo horas e me dedico ao máximo pra isso (+)",
-    comments: [
-      {
-        user: "/src/assets/LOGO_X.svg",
-        content: "comentario teste",
-        time: "30 de jul",
-      },
-      {
-        user: "https://media.licdn.com/dms/image/v2/D4E03AQH6CzfgKuAXXw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1699646804140?e=1757548800&v=beta&t=Vm1k6H39yAIon7sVUdBNLZ7OaXaKkTuZu08-aB7-17o",
-        content: "comentario teste 2",
-        time: "30 de jul",
-      },
-    ],
-    retweets: 10000,
-    likes: 10000,
-    views: 10000,
+  const handleButtonMenu = (menuOption: string) => {
+    setToRender(menuOption);
   };
 
   return (
@@ -97,17 +102,7 @@ const Home = () => {
             );
           case "POST":
             return (
-              <TweetPage
-                user={tweet.user}
-                account={tweet.account}
-                content={tweet.content}
-                likes={tweet.likes}
-                retweets={tweet.retweets}
-                time={tweet.time}
-                views={tweet.views}
-                comments={tweet.comments}
-                handleButtonMenu={handleButtonMenu}
-              />
+              <TweetPage tweet={tweet} handleButtonMenu={handleButtonMenu} />
             );
           default:
             return (

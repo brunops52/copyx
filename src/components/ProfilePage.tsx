@@ -43,7 +43,6 @@ const ProfilePage = ({ handleButtonMenu, handleUser }: ProfilePageProps) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [oldPassword, setOldPassword] = useState("");
 
-
   const handleButtonCoverClick = () => {
     fileInputCoverRef.current?.click();
   };
@@ -65,13 +64,19 @@ const ProfilePage = ({ handleButtonMenu, handleUser }: ProfilePageProps) => {
   };
 
   const handleFileChange = async (e: React.FormEvent) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
-    if (!coverPic && !profilePic && !bioText && !firstNameText && !lastNameText) {
+    if (
+      !coverPic &&
+      !profilePic &&
+      !bioText &&
+      !firstNameText &&
+      !lastNameText
+    ) {
       alert("Nenhuma alteração detectada!");
       return;
     }
-    
+
     const formData = new FormData();
     coverPic && formData.append("cover_photo", coverPic);
     profilePic && formData.append("profile_picture", profilePic);
@@ -104,34 +109,32 @@ const ProfilePage = ({ handleButtonMenu, handleUser }: ProfilePageProps) => {
   };
 
   const handlePasswordChange = async (e: React.FormEvent) => {
-    e.preventDefault(); 
-
+    e.preventDefault();
 
     if (newPassword != confirmPassword) {
       alert("As senha não coincidem");
       return;
     }
-    
+
     const formData = new FormData();
-      oldPassword && formData.append("old_password", oldPassword);
-      newPassword && formData.append("new_password", newPassword);
+    oldPassword && formData.append("old_password", oldPassword);
+    newPassword && formData.append("new_password", newPassword);
 
     try {
       await api.put("change-password/", formData);
 
       const storedUser = localStorage.getItem("user");
-        if (storedUser) {
-          const parsedUser = JSON.parse(storedUser);
-          const response = await api.get<UserDetailResponse>(
-            `users/${parsedUser.id}/profile/`
-          );
+      if (storedUser) {
+        const parsedUser = JSON.parse(storedUser);
+        const response = await api.get<UserDetailResponse>(
+          `users/${parsedUser.id}/profile/`
+        );
 
-          setSelfUser(response.data);
+        setSelfUser(response.data);
 
-          localStorage.setItem("user", JSON.stringify(response.data));
+        localStorage.setItem("user", JSON.stringify(response.data));
       }
-      setShowModalEditPass(false),
-      alert("Alteração realizada com sucesso!");
+      (setShowModalEditPass(false), alert("Alteração realizada com sucesso!"));
     } catch (error) {
       console.error("Erro ao atualizar senha:", error);
       alert("Erro ao atualizar a senha");
@@ -265,7 +268,8 @@ const ProfilePage = ({ handleButtonMenu, handleUser }: ProfilePageProps) => {
                     <button
                       type="button"
                       onClick={handleButtonProfileClick}
-                      className="absolute top-[-45px] left-[30%] text-black border-2 border-black p-2 bg-neutral-600/30 rounded-full cursor-pointer">
+                      className="absolute top-[-45px] left-[30%] text-black border-2 border-black p-2 bg-neutral-600/30 rounded-full cursor-pointer"
+                    >
                       <MdEdit />
                     </button>
                     <input
@@ -280,7 +284,9 @@ const ProfilePage = ({ handleButtonMenu, handleUser }: ProfilePageProps) => {
                 <div className="w-full py-1.5 sticky top-0 left-0 px-5">
                   <div className=" mb-4 flex gap-4">
                     <div className="border-2 border-neutral-700 p-2">
-                      <h4 className="text-xs text-neutral-500">Primeiro nome</h4>
+                      <h4 className="text-xs text-neutral-500">
+                        Primeiro nome
+                      </h4>
                       <input
                         placeholder={selfUser?.first_name}
                         value={firstNameText}
@@ -303,7 +309,7 @@ const ProfilePage = ({ handleButtonMenu, handleUser }: ProfilePageProps) => {
                   <div className="border-2 border-neutral-700 p-2">
                     <h4 className="text-xs text-neutral-500">Bio</h4>
                     <textarea
-                      placeholder={selfUser?.bio ? (selfUser?.bio) : ''}
+                      placeholder={selfUser?.bio ? selfUser?.bio : ""}
                       value={bioText}
                       onChange={(e) => setBioText(e.target.value)}
                       className="w-full border-white resize-none overflow-hidden focus:outline-none max-h-12 min-h-full"
@@ -318,8 +324,8 @@ const ProfilePage = ({ handleButtonMenu, handleUser }: ProfilePageProps) => {
                     <button
                       type="button"
                       onClick={() => {
-                        setShowModalEditPass(true),
-                        setShowModalEditProfile(false)
+                        (setShowModalEditPass(true),
+                          setShowModalEditProfile(false));
                       }}
                       className="py-1 px-6 border-2 border-neutral-700 rounded-full cursor-pointer"
                     >
@@ -333,7 +339,10 @@ const ProfilePage = ({ handleButtonMenu, handleUser }: ProfilePageProps) => {
         </div>
       )}
       {showModalEditPass && (
-        <form onSubmit={handlePasswordChange} className="fixed inset-0 z-50 overflow-y-auto h-screen flex items-center justify-center bg-gray-700/60 text-white">
+        <form
+          onSubmit={handlePasswordChange}
+          className="fixed inset-0 z-50 overflow-y-auto h-screen flex items-center justify-center bg-gray-700/60 text-white"
+        >
           <div className="p-4 bg-black w-full max-w-[252px] rounded-2xl">
             <div className="flex flex-col text-white font-bold px-6">
               <h3 className="text-2xl mb-8">Alterar senha</h3>
@@ -343,7 +352,6 @@ const ProfilePage = ({ handleButtonMenu, handleUser }: ProfilePageProps) => {
                 type="password"
                 name="currentPassword"
                 onChange={(e) => setOldPassword(e.target.value)}
-
               />
               <input
                 placeholder="Nova senha"
@@ -369,10 +377,10 @@ const ProfilePage = ({ handleButtonMenu, handleUser }: ProfilePageProps) => {
                 <button
                   type="button"
                   onClick={() => {
-                    setShowModalEditPass(false),
-                    setOldPassword(""),
-                    setNewPassword,
-                    setConfirmPassword("")
+                    (setShowModalEditPass(false),
+                      setOldPassword(""),
+                      setNewPassword,
+                      setConfirmPassword(""));
                   }}
                   className=" text-white bg-black py-1 w-full border-2 rounded-4xl hover:bg-neutral-800 cursor-pointer"
                 >
