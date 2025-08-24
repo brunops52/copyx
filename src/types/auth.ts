@@ -178,3 +178,18 @@ export interface Bookmarks {
   created_at: string;
   user: number;
 }
+
+export interface CommentsResponse {
+  count: number;
+  next: null;
+  previous: null;
+  results: Comment[];
+}
+
+export interface Comment {
+  id: number;
+  user: User;
+  content: string;
+  created_at: string;
+  tweet: number;
+}

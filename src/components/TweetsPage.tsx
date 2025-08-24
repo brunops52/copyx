@@ -135,21 +135,21 @@ const TweetsPage = ({ handleButtonMenu, handleUser }: TweetsPageProps) => {
         </div>
       </form>
       {showFollowing ? (
+              <>
+                {timeline &&
+                  timeline.map((singleTweet, index) => (
+                    <Tweet
+                      key={index}
+                      tweet={singleTweet}
+                      handleButtonMenu={handleButtonMenu}
+                      handleUser={handleUser}
+                    />
+                  ))}
+              </>
+      ) : (
         <>
           {tweets &&
             tweets.map((singleTweet, index) => (
-              <Tweet
-                key={index}
-                tweet={singleTweet}
-                handleButtonMenu={handleButtonMenu}
-                handleUser={handleUser}
-              />
-            ))}
-        </>
-      ) : (
-        <>
-          {timeline &&
-            timeline.map((singleTweet, index) => (
               <Tweet
                 key={index}
                 tweet={singleTweet}
