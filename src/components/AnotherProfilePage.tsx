@@ -188,7 +188,7 @@ const AnotherProfilePage = ({
               <div className="flex items-center justify-between px-5">
                 {user.profile_picture ? (
                   <img
-                    src="https://brunops52.pythonanywhere.com/media/profile_pics/original.png"
+                    src={user.profile_picture }
                     alt="X Logo"
                     className="w-36 h-36 bg-cover bg-center object-cover mt-[-72px] rounded-full border-4 border-black mb-1.5"
                   />
