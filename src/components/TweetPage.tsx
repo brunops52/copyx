@@ -1,12 +1,12 @@
-import { MdOutlineFileUpload } from "react-icons/md";
-import { IoBookmarkOutline, IoStatsChart } from "react-icons/io5";
+import { useState } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { FaRetweet } from "react-icons/fa";
 import { GoPersonFill } from "react-icons/go";
-import { useState } from "react";
-import Comment from "./Comment";
+import { IoBookmarkOutline, IoStatsChart } from "react-icons/io5";
+import { MdOutlineFileUpload } from "react-icons/md";
 import type { Tweet } from "../types/auth";
 import { timeAgo } from "../utils/timeAgo";
+import Comment from "./Comment";
 
 type TweetPageProps = {
   tweet: Tweet;
@@ -103,6 +103,7 @@ const TweetPage = ({ tweet, handleButtonMenu }: TweetPageProps) => {
             img={singleNotification.user}
             content={singleNotification.content}
             time={singleNotification.time}
+            user={singleNotification.user}
           />
         ))}
       </div>

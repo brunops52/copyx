@@ -1,24 +1,24 @@
+import { useEffect, useState } from "react";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { FaRetweet } from "react-icons/fa6";
 import { GoPersonFill } from "react-icons/go";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import {
+  IoBookmark,
+  IoBookmarkOutline,
   IoChatbubbleEllipsesOutline,
   IoStatsChart,
-  IoBookmarkOutline,
-  IoBookmark,
 } from "react-icons/io5";
-import { FaRetweet } from "react-icons/fa6";
 import { MdOutlineFileUpload } from "react-icons/md";
+import api from "../services/api";
 import type {
-  Tweet as TweetType,
   AuthResponse,
-  User,
   CommentsResponse,
   Comment as CommentType,
   TweetFormData,
+  Tweet as TweetType,
+  User,
 } from "../types/auth";
-import api from "../services/api";
 import { timeAgo } from "../utils/timeAgo";
-import { useEffect, useState } from "react";
 import Comment from "./Comment";
 
 type TweetProps = {

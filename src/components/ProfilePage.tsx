@@ -1,18 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { AiFillLock } from "react-icons/ai";
-import { FaRegCalendarAlt } from "react-icons/fa";
 import { GoPersonFill } from "react-icons/go";
-import Tweet from "./Tweet";
 import { IoClose } from "react-icons/io5";
 import { MdEdit } from "react-icons/md";
+import api from "../services/api";
 import type {
+  Tweet as TweetType,
   User,
   UserDetailResponse,
-  Tweet as TweetType,
   UserResponse,
 } from "../types/auth";
-import api from "../services/api";
 import ShowRelations from "./ShowRelations";
+import Tweet from "./Tweet";
 
 type ProfilePageProps = {
   handleButtonMenu: (menu: string) => void;

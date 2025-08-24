@@ -1,22 +1,22 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-import { GoPersonFill } from "react-icons/go";
 import {
-  AiOutlineFileImage,
-  AiOutlineFileGif,
   AiOutlineCalendar,
-  AiOutlineSmile,
   AiOutlineEnvironment,
+  AiOutlineFileGif,
+  AiOutlineFileImage,
+  AiOutlineSmile,
 } from "react-icons/ai";
-import Tweet from "./Tweet";
+import { GoPersonFill } from "react-icons/go";
 import api from "../services/api";
 import type {
+  AuthResponse,
   TweetFormData,
   Tweet as TweetType,
   TweetsResponse,
-  AuthResponse,
   User,
 } from "../types/auth";
+import Tweet from "./Tweet";
 
 type TweetsPageProps = {
   handleButtonMenu: (menu: string) => void;

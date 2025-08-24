@@ -1,7 +1,7 @@
-import { GoPersonFill } from "react-icons/go";
-import type { AuthResponse, IsFollowingResponse, User } from "../types/auth";
 import { useEffect, useState } from "react";
+import { GoPersonFill } from "react-icons/go";
 import api from "../services/api";
+import type { AuthResponse, IsFollowingResponse, User } from "../types/auth";
 
 type ShowRelationProps = {
   user: User;
